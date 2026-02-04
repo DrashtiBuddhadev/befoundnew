@@ -1,0 +1,55 @@
+/* ServicesSection styles - Stacking Cards */
+
+.services-section {
+  position: relative;
+}
+
+/* Stacking card effect */
+.service-card {
+  will-change: transform, opacity;
+  transform-origin: center top;
+}
+
+.service-card img {
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5));
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover img {
+  transform: scale(1.02);
+}
+
+/* Tag hover effect */
+.service-card .border-b:hover {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), transparent);
+}
+
+/* Animate items */
+.services-section .animate-item {
+  will-change: transform, opacity;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .service-card {
+    position: relative !important;
+  }
+
+  .service-card > div {
+    min-height: auto;
+  }
+
+  .service-card .min-h-screen {
+    min-height: auto;
+  }
+
+  .service-card .grid {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-card img {
+    max-height: 50vh;
+  }
+}

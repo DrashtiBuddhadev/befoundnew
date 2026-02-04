@@ -5,7 +5,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['"Ubuntu"', 'sans-serif'],
+        serif: ['"Libre Baskerville"', 'serif'],
+        condensed: ['"Barlow Condensed"', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

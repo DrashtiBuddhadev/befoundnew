@@ -1,0 +1,164 @@
+/* Video Background - Optimized for clarity */
+.video-background {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Speed lines animation for Card 01 */
+.speed-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.speed-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), rgba(147, 197, 253, 0.7), transparent);
+  animation: speedLine 2s linear infinite;
+  transform: rotate(-35deg) translateX(-100%);
+}
+
+@keyframes speedLine {
+  0% {
+    transform: rotate(-35deg) translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-35deg) translateX(200%);
+    opacity: 0;
+  }
+}
+
+/* Road glow lines */
+.road-glow-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(to top, rgba(99, 102, 241, 0.9), transparent);
+  border-radius: 2px;
+  animation: roadGlow 1.5s ease-out infinite;
+}
+
+@keyframes roadGlow {
+  0% {
+    transform: translateX(-50%) translateY(100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-400%);
+    opacity: 0;
+  }
+}
+
+/* Funnel layer animation for Card 02 */
+.funnel-layer {
+  height: 16px;
+  border-radius: 4px;
+  animation: funnelPulse 3s ease-in-out infinite;
+}
+
+@keyframes funnelPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.03);
+  }
+}
+
+.funnel-glow {
+  animation: funnelGlow 2s ease-in-out infinite;
+}
+
+@keyframes funnelGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1.15);
+  }
+}
+
+/* Bar chart animation for Card 03 */
+.bar-chart-bar {
+  width: 12px;
+  background: linear-gradient(to top, rgba(100, 116, 139, 0.3), rgba(100, 116, 139, 0.6));
+  border-radius: 3px;
+  animation: barPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes barPulse {
+  0%, 100% {
+    transform: scaleY(0.85);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 0.9;
+  }
+}
+
+/* Device float and glow for Card 04 */
+.device-float {
+  animation: deviceFloat 4s ease-in-out infinite;
+}
+
+@keyframes deviceFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-6deg);
+  }
+}
+
+.device-glow {
+  animation: deviceGlow 3s ease-in-out infinite;
+}
+
+@keyframes deviceGlow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+.hand-element {
+  animation: handMove 4s ease-in-out infinite;
+}
+
+@keyframes handMove {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}

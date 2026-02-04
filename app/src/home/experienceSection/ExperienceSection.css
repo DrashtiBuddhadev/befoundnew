@@ -1,0 +1,166 @@
+/* ExperienceSection / Our Process styles */
+
+.process-section {
+  position: relative;
+}
+
+.process-card {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.process-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ============================================
+   SVG GRAPHIC HOVER ANIMATIONS
+   ============================================ */
+
+.svg-graphic {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Diagonal Lines - Slide effect on hover */
+.svg-diagonal .diagonal-lines line {
+  transition: transform 0.4s ease, stroke 0.3s ease;
+}
+
+.process-card:hover .svg-diagonal {
+  transform: scale(1.05);
+}
+
+.process-card:hover .svg-diagonal .diagonal-lines line {
+  stroke: var(--hover-stroke);
+  animation: diagonal-slide 0.6s ease forwards;
+}
+
+@keyframes diagonal-slide {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(4px) translateY(4px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+/* Hexagon - Rotate and pulse on hover */
+.svg-hexagon {
+  transform-origin: center;
+}
+
+.svg-hexagon .hex-lines line {
+  transition: stroke 0.3s ease, transform 0.4s ease;
+}
+
+.svg-hexagon .hex-outline {
+  transition: stroke 0.3s ease, transform 0.5s ease;
+  transform-origin: center;
+}
+
+.process-card:hover .svg-hexagon {
+  transform: rotate(15deg) scale(1.08);
+}
+
+.process-card:hover .svg-hexagon .hex-lines line {
+  stroke: var(--hover-stroke);
+}
+
+.process-card:hover .svg-hexagon .hex-outline {
+  stroke: var(--hover-stroke);
+}
+
+/* Sunburst - Continuous rotation on hover */
+.svg-sunburst {
+  transform-origin: center;
+}
+
+.svg-sunburst .sunburst-rays {
+  transform-origin: 80px 80px;
+  transition: stroke 0.3s ease;
+}
+
+.svg-sunburst .sunburst-circle {
+  transform-origin: 80px 80px;
+  transition: stroke 0.3s ease, transform 0.5s ease, r 0.5s ease;
+}
+
+.process-card:hover .svg-sunburst .sunburst-rays {
+  stroke: var(--hover-stroke);
+  animation: sunburst-spin 8s linear infinite;
+}
+
+.process-card:hover .svg-sunburst .sunburst-circle {
+  stroke: var(--hover-stroke);
+}
+
+.process-card:hover .svg-sunburst .sunburst-circle.inner {
+  animation: circle-pulse 1.5s ease-in-out infinite;
+}
+
+.process-card:hover .svg-sunburst .sunburst-circle.outer {
+  animation: circle-pulse 1.5s ease-in-out infinite 0.3s;
+}
+
+@keyframes sunburst-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes circle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Triangle - Staggered rotation on hover */
+.svg-triangle {
+  transform-origin: center;
+}
+
+.svg-triangle .triangle-1,
+.svg-triangle .triangle-2,
+.svg-triangle .triangle-3 {
+  transform-origin: 90px 90px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s ease;
+}
+
+.process-card:hover .svg-triangle {
+  transform: scale(1.05);
+}
+
+.process-card:hover .svg-triangle .triangle-1 {
+  transform: rotate(-15deg);
+  stroke: var(--hover-stroke);
+}
+
+.process-card:hover .svg-triangle .triangle-2 {
+  transform: rotate(12deg);
+  stroke: var(--hover-stroke);
+}
+
+.process-card:hover .svg-triangle .triangle-3 {
+  transform: rotate(-8deg);
+  stroke: var(--hover-stroke);
+}
+
+/* ============================================ */
+
+/* Animate items */
+.process-section .animate-item {
+  will-change: transform, opacity;
+}
+
+/* Hover effects for cards */
+.process-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #6366f1;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.process-card:hover::before {
+  width: 100%;
+}
+
+/* Responsive adjustments handled via Tailwind classes on SVG components */

@@ -1,0 +1,379 @@
+/* PhilosophySection styles */
+
+.philosophy-section {
+  position: relative;
+}
+
+/* Pillar cards */
+.pillar-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   ICON ANIMATIONS
+   ============================================ */
+
+/* --- Grid Icon (Card 1) --- */
+.grid-icon .c-1,
+.grid-icon .c-2,
+.grid-icon .c-3,
+.grid-icon .c-4 {
+  transition: fill 0.2s ease;
+}
+
+/* Staggered reverse (mouse out) */
+.grid-icon .c-4 { transition-delay: 0s; }
+.grid-icon .c-2 { transition-delay: 0.1s; }
+.grid-icon .c-1 { transition-delay: 0.2s; }
+
+/* Hover: circles turn dark in sequence */
+.pillar-card:hover .grid-icon .c-1 {
+  fill: #282828;
+  transition-delay: 0s;
+}
+.pillar-card:hover .grid-icon .c-2 {
+  fill: #282828;
+  transition-delay: 0.1s;
+}
+.pillar-card:hover .grid-icon .c-4 {
+  fill: #282828;
+  transition-delay: 0.2s;
+}
+/* c-3 stays light */
+.pillar-card:hover .grid-icon .c-3 {
+  fill: #d4d4d4;
+}
+
+/* --- Bars Icon (Card 2) --- */
+.bars-icon rect {
+  transition: fill 0.2s ease;
+}
+
+/* Staggered reverse (mouse out) */
+.bars-icon .bar-5 { transition-delay: 0s; }
+.bars-icon .bar-4 { transition-delay: 0.1s; }
+.bars-icon .bar-3 { transition-delay: 0.2s; }
+.bars-icon .bar-2 { transition-delay: 0.3s; }
+.bars-icon .bar-1 { transition-delay: 0.4s; }
+
+/* Hover: bars fill in from left to right */
+.pillar-card:hover .bars-icon .bar-1 {
+  fill: #282828;
+  transition-delay: 0s;
+}
+.pillar-card:hover .bars-icon .bar-2 {
+  fill: #282828;
+  transition-delay: 0.1s;
+}
+.pillar-card:hover .bars-icon .bar-3 {
+  fill: #282828;
+  transition-delay: 0.2s;
+}
+.pillar-card:hover .bars-icon .bar-4 {
+  fill: #282828;
+  transition-delay: 0.3s;
+}
+.pillar-card:hover .bars-icon .bar-5 {
+  fill: #282828;
+  transition-delay: 0.4s;
+}
+
+/* --- Circle Loader Icon (Card 3) --- */
+.circle-icon .loader-ring {
+  stroke-dasharray: 164;
+  stroke-dashoffset: 164;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover: circle fills to ~60% */
+.pillar-card:hover .circle-icon .loader-ring {
+  stroke-dashoffset: 66;
+}
+
+/* ============================================
+   MARQUEE ANIMATION
+   ============================================ */
+
+.marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.marquee-content {
+  display: flex;
+  gap: 2rem;
+  animation: marquee 20s linear infinite;
+  width: max-content;
+}
+
+.marquee-content span {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause marquee on hover */
+.pillar-card:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+/* ============================================
+   OTHER STYLES
+   ============================================ */
+
+/* Smooth transitions for all animated items */
+.animate-item {
+  will-change: transform, opacity;
+}
+
+/* Dark card hover glow */
+.philosophy-section .bg-black {
+  transition: box-shadow 0.3s ease;
+}
+
+.philosophy-section .bg-black:hover {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+}
+
+/* Accent dot pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.philosophy-section .bg-indigo-500.rounded-full.w-2 {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Arrow button hover effect */
+.arrow-btn {
+  transition: all 0.3s ease;
+}
+
+/* ============================================
+   BOTTOM SECTION INTERACTIONS
+   ============================================ */
+
+/* Animated line */
+.animated-line {
+  animation: lineGrow 1s ease-out forwards;
+  transform-origin: left;
+}
+
+@keyframes lineGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Highlight words with animated background */
+.highlight-word {
+  position: relative;
+  background: linear-gradient(to right, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0.15));
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 100%;
+  padding: 0 4px;
+  margin: 0 -4px;
+  border-radius: 4px;
+  transition: background-size 0.6s ease;
+}
+
+/* Hover underline effect */
+.hover-underline {
+  position: relative;
+  cursor: pointer;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: #6366f1;
+  transition: width 0.3s ease;
+}
+
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* Stat bars animation */
+.stat-bar {
+  transform-origin: left;
+  animation: statGrow 1s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.stat-item:hover .stat-bar {
+  animation-play-state: running;
+}
+
+@keyframes statGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Logo circles hover */
+.logo-circles > div {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-circles > div:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Black card effects */
+.black-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.black-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Floating blurs animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+.philosophy-section .blur-3xl {
+  animation: float 8s ease-in-out infinite;
+}
+
+.philosophy-section .blur-3xl:last-of-type {
+  animation-delay: -4s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pillar-card {
+    min-height: 380px;
+  }
+
+  .marquee-content {
+    animation-duration: 15s;
+  }
+}
+
+/* ============================================
+   BEFOUND SECTION - MODERN FULL WIDTH
+   ============================================ */
+
+.befound-section {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Mockup showcase */
+.mockup-showcase {
+  position: relative;
+  min-height: 50vh;
+}
+
+.mockup-slide {
+  will-change: transform, opacity;
+}
+
+.mockup-slide img {
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5));
+}
+
+/* Stats block hover */
+.stat-block {
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #6366f1, transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.stat-block:hover::before {
+  transform: translateX(0);
+}
+
+/* Progress indicators */
+.befound-section [class*="w-8"][class*="h-[2px]"] {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .befound-section {
+    min-height: auto;
+  }
+
+  .mockup-showcase {
+    min-height: 40vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .befound-section .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mockup-slide img {
+    max-height: 45vh;
+  }
+}

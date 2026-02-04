@@ -4,14 +4,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import Hero from './sections/Hero';
-import Philosophy from './sections/Philosophy';
-import Services from './sections/Services';
-import Impact from './sections/Impact';
-import Experience from './sections/Experience';
-import CTA from './sections/CTA';
-import FinalCTA from './sections/FinalCTA';
-import FAQ from './sections/FAQ';
+import HeroSection from './home/heroSection/HeroSection';
+import PhilosophySection from './home/philosophySection/PhilosophySection';
+import ServicesSection from './home/servicesSection/ServicesSection';
+// import ImpactSection from './home/impactSection/ImpactSection';
+import ExperienceSection from './home/experienceSection/ExperienceSection';
+import CtaSection from './home/ctaSection/CtaSection';
+import FinalCtaSection from './home/finalCtaSection/FinalCtaSection';
+import FaqSection from './home/faqSection/FaqSection';
 
 import './App.css';
 
@@ -33,22 +33,19 @@ function App() {
 
   return (
     <div className="relative bg-black min-h-screen">
-      {/* Grain overlay */}
-      <div className="grain-overlay" />
 
       {/* Navigation */}
       <Navigation />
 
       {/* Main content */}
       <main className="relative">
-        <Hero />
-        <Philosophy />
-        <Services />
-        <Impact />
-        <Experience />
-        <CTA />
-        <FinalCTA />
-        <FAQ />
+        <HeroSection />
+        <PhilosophySection />
+        <ServicesSection />
+        <ExperienceSection />
+        <CtaSection />
+        <FinalCtaSection />
+        <FaqSection />
       </main>
 
       {/* Footer */}
