@@ -9,6 +9,7 @@ import PhilosophySection from './home/philosophySection/PhilosophySection';
 import ServicesSection from './home/servicesSection/ServicesSection';
 // import ImpactSection from './home/impactSection/ImpactSection';
 import ExperienceSection from './home/experienceSection/ExperienceSection';
+import ProjectsSection from './home/projectsSection/ProjectsSection';
 import CtaSection from './home/ctaSection/CtaSection';
 import FinalCtaSection from './home/finalCtaSection/FinalCtaSection';
 import FaqSection from './home/faqSection/FaqSection';
@@ -43,6 +44,7 @@ function App() {
         <PhilosophySection />
         <ServicesSection />
         <ExperienceSection />
+        <ProjectsSection />
         <CtaSection />
         <FinalCtaSection />
         <FaqSection />
