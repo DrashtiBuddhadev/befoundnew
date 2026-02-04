@@ -1,11 +1,61 @@
 /* FaqSection styles */
 
-.faq-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
+.faq-section {
+  position: relative;
 }
 
-.faq-content.open {
-  max-height: 500px;
+/* FAQ Item */
+.faq-item {
+  position: relative;
+  will-change: transform;
+}
+
+/* Hover effect - top line */
+.faq-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #6366f1, transparent);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item:hover::before {
+  width: 100%;
+}
+
+/* Answer animation */
+.faq-answer {
+  will-change: max-height, opacity;
+}
+
+/* Animate items */
+.faq-section .animate-item {
+  will-change: transform, opacity;
+}
+
+/* CTA hover effect */
+.faq-section a[href="#contact"] span:last-child {
+  position: relative;
+  overflow: hidden;
+}
+
+.faq-section a[href="#contact"] span:last-child::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-section a[href="#contact"]:hover span:last-child::before {
+  transform: translateY(0);
+}
+
+.faq-section a[href="#contact"] span:last-child svg {
+  position: relative;
+  z-index: 1;
 }

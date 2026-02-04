@@ -1,1 +1,61 @@
 /* CtaSection styles */
+
+.cta-section {
+  position: relative;
+}
+
+/* Text styling */
+.cta-text {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  will-change: transform, color;
+}
+
+/* Smooth text transitions */
+.cta-link h2,
+.cta-link h2 span {
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover background effect */
+.cta-link > div:first-child {
+  will-change: transform;
+}
+
+/* Corner accents animation */
+.cta-section .absolute.top-8,
+.cta-section .absolute.bottom-8 {
+  transition: border-color 0.5s ease, transform 0.5s ease;
+}
+
+.cta-link:hover .absolute.top-8.left-8 {
+  transform: translate(-4px, -4px);
+}
+
+.cta-link:hover .absolute.top-8.right-8 {
+  transform: translate(4px, -4px);
+}
+
+.cta-link:hover .absolute.bottom-8.left-8 {
+  transform: translate(-4px, 4px);
+}
+
+.cta-link:hover .absolute.bottom-8.right-8 {
+  transform: translate(4px, 4px);
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .cta-text {
+    font-size: 12vw;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Hide corner accents on mobile */
+@media (max-width: 768px) {
+  .cta-section .absolute.top-8,
+  .cta-section .absolute.bottom-8 {
+    display: none;
+  }
+}
