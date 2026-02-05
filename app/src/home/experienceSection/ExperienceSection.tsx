@@ -104,7 +104,7 @@ const processSteps = [
     number: '01',
     title: 'Intent first.',
     subtitle: 'Impact next.',
-    description: 'Before pixels or platforms, we seek clarity. We gather requirements, understand your users, and define what success looks like — creatively and commercially.',
+    description: 'Before pixels or platforms, we seek clarity. We gather requirements, understand your users, and define what success looks like, creatively and commercially.',
     footnote: 'Strategy > assumptions. Always.',
     bgColor: 'bg-[#0a0a0a]',
     textColor: 'text-white',
@@ -114,7 +114,7 @@ const processSteps = [
     number: '02',
     title: 'Minimal by choice.',
     subtitle: 'Powerful by design.',
-    description: 'We design experiences that feel natural, intuitive, and human. Your brand shows up with precision — not noise — so visitors glide from interest to action.',
+    description: 'We design experiences that feel natural, intuitive, and human. Your brand shows up with precision and not noise, so visitors glide from interest to action.',
     footnote: 'Less clutter. More clarity.',
     bgColor: 'bg-[#f5f5f5]',
     textColor: 'text-black',
@@ -224,7 +224,7 @@ export default function ExperienceSection() {
             </h2>
             <div className="animate-item flex items-end">
               <p className="text-base lg:text-lg text-white/50 leading-relaxed">
-                We design websites, web-applications and build brands and create moments that turn attention into action. From first impression to lasting impact — we build clarity into every click, scroll, and search.
+                We design websites, web-applications and build brands and create moments that turn attention into action. From first impression to lasting impact, we build clarity into every click, scroll, and search.
               </p>
             </div>
           </div>

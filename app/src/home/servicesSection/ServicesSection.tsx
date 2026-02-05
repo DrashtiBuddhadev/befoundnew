@@ -10,25 +10,25 @@ const services = [
     year: '2025',
     title: 'UI/UX Design',
     description:
-      "A design isn't just 'how it looks'—it's how it feels. We craft digital experiences that are both stunning and simple to use. We dive deep into your users' world to create interfaces that guide them effortlessly from homepage to happy customer. When everything is fighting for attention, nothing stands out. So we simplify. We prioritize your objectives and design with discipline and intent.",
+      "A design isn't just 'how it looks', it's how it feels. We craft digital experiences that are both stunning and simple to use. We dive deep into your users' world to create interfaces that guide them effortlessly from homepage to happy customer. When everything is fighting for attention, nothing stands out. So we simplify. We prioritize your objectives and design with discipline and intent.",
     image: '/images/work/Kaizen Dezain Mockup.png',
-    tags: ['Figma UI Design', 'User Experience (UX)', 'Design Systems', 'Responsive Planning'],
+    tags: ['Figma UI Design', 'User Experience (UX)', 'Wireframes', 'Responsive Planning'],
   },
   {
     year: '2025',
     title: 'Web Development',
     description:
-      "Not every brand needs the same platform—and not every platform suits the same goals. We build on WordPress, Shopify, and Webflow to engineer the right environment for your business to live, grow, and scale. Development should be invisible—not in capability, but in experience. We build websites that are fast, secure, and structurally sound.",
+      "Not every brand needs the same platform and not every platform suits the same goals. We build on WordPress, Shopify, and Webflow to engineer the right environment for your business to live, grow, and scale. Development should be invisible not in capability, but in experience. We build websites that are fast, secure, and structurally sound.",
     image: '/images/work/Muse & Masterpiece Mockup.png',
-    tags: ['Pixel-Perfect Translation', 'Platform Selection', 'Client-First Framework', 'Technical SEO'],
+    tags: ['Pixel-Perfect Translation', 'Shpify, Wordpress, Webflows', 'Client-First Framework- MERN Stack', 'Technical SEO'],
   },
   {
     year: '2025',
     title: 'End-to-End Package',
     description:
-      "The friction-free solution. One team, one vision, one process—from concept to deployment. No misalignment, no handover issues, no wasted iteration. When design and development live together, things move faster, cleaner, and with more precision. The result? A finished product that looks right, works right, and feels intentional from end to end.",
+      "The friction-free solution. One team, one vision, one process, from concept to deployment. No misalignment, no handover issues, no wasted iteration. When design and development live together, things move faster, cleaner, and with more precision. The result? A finished product that looks right, works right, and feels intentional from end to end.",
     image: '/images/work/NW9 Design System Mockup.png',
-    tags: ['Full Project Lifecycle', 'Unified Vision', 'Rapid Iteration', 'Post-Launch Training'],
+    tags: ['Full Project Lifecycle', 'Design + Development + SEO', 'Unified Vision', 'Rapid Iteration', 'Post-Launch Maintenance Support'],
   },
   {
     year: '2025',
@@ -36,13 +36,13 @@ const services = [
     description:
       "When templated solutions hit a ceiling, we go custom. From advanced motion to full web applications, we engineer digital experiences that feel intentional, immersive, and technically sound. Using modern frameworks and automation, we develop interfaces, products, and interactions that are performant, lightweight, and future-ready.",
     image: '/images/work/NW9 Development Services Mockup.png',
-    tags: ['Advanced Motion (GSAP)', 'Web Applications', 'Modern Frontend', 'API & Automation'],
+    tags: ['Advanced Motion (GSAP)', 'Framer Motion ', 'Web Applications', 'Modern Frontend', 'API & Automation'],
   },
   {
     year: '2025',
     title: 'SEO',
     description:
-      "People Google everything. The question is—do they find you or your competitor? We fine-tune the foundation of your site so search engines trust you, users discover you, and conversions follow. Clean structure, compelling content, smart keywords, fast performance—all aligned with how real users search and buy. Organic growth, sustainable results, measurable impact. No gimmicks.",
+      "People Google everything. The question is: do they find you or your competitor? We fine-tune the foundation of your site so search engines trust you, users discover you, and conversions follow. Clean structure, compelling content, smart keywords, fast performance, all aligned with how real users search and buy. Organic growth, sustainable results, measurable impact. No gimmicks.",
     image: '/images/work/Weston Dental Mockup.png',
     tags: ['Technical SEO', 'On-Page SEO', 'Performance Optimization', 'Analytics & Reporting'],
   },

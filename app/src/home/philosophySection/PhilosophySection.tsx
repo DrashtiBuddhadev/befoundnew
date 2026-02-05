@@ -162,7 +162,7 @@ export default function PhilosophySection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
             <div className="lg:col-span-7">
               <h2 className="animate-item text-3xl sm:text-4xl md:text-5xl font-medium leading-tight mb-8">
-                Design is a <span className="text-indigo-500">strategic advantage</span> — not a luxury.
+                Design is a <span className="text-indigo-500">strategic advantage</span> and not a luxury.
               </h2>
               <p className="animate-item text-lg sm:text-xl text-black/70 leading-relaxed max-w-2xl">
                 Aesthetics, clarity, and user experience shape how customers engage, decide, and convert. Clean interfaces reduce friction, improve trust, and make digital products feel effortless.
@@ -172,7 +172,7 @@ export default function PhilosophySection() {
             <div className="lg:col-span-5 flex items-end">
               <div className="animate-item w-full p-6 md:p-8 bg-white border border-black/5 shadow-sm">
                 <p className="text-base sm:text-lg text-black/80 leading-relaxed">
-                  Typography, layout, and visual hierarchy aren't styling — they are <span className="font-medium text-black">tools that direct attention</span>, communicate value, and guide behavior.
+                  Typography, layout, and visual hierarchy aren't styling, they are <span className="font-medium text-black">tools that direct attention</span>, communicate value, and guide behavior.
                 </p>
                 <div className="mt-6 pt-6 border-t border-black/10 flex items-center justify-between">
                   <span className="text-sm text-black/50">When executed well</span>
@@ -344,9 +344,8 @@ export default function PhilosophySection() {
                 {workImages.map((_, i) => (
                   <div
                     key={i}
-                    className={`w-8 h-[2px] rounded-full transition-all duration-500 ${
-                      i === activeImageIndex ? 'bg-white' : 'bg-white/20'
-                    }`}
+                    className={`w-8 h-[2px] rounded-full transition-all duration-500 ${i === activeImageIndex ? 'bg-white' : 'bg-white/20'
+                      }`}
                   />
                 ))}
               </div>
@@ -392,11 +391,10 @@ export default function PhilosophySection() {
                 {workImages.map((img, index) => (
                   <div
                     key={index}
-                    className={`mockup-slide absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out ${
-                      index === activeImageIndex
-                        ? 'opacity-100 scale-100 translate-y-0'
-                        : 'opacity-0 scale-95 translate-y-8'
-                    }`}
+                    className={`mockup-slide absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out ${index === activeImageIndex
+                      ? 'opacity-100 scale-100 translate-y-0'
+                      : 'opacity-0 scale-95 translate-y-8'
+                      }`}
                   >
                     <img
                       src={img}
