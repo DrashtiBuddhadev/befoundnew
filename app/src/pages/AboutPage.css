@@ -1,0 +1,32 @@
+/* AboutPage styles */
+
+.about-page {
+  position: relative;
+}
+
+/* Smooth scroll behavior */
+.about-page * {
+  scroll-behavior: smooth;
+}
+
+/* Image hover effects */
+.about-page img {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), filter 0.7s ease;
+}
+
+/* Quote styling */
+.about-page blockquote {
+  position: relative;
+}
+
+/* Social link hover underline */
+.about-page a span:first-child {
+  position: relative;
+}
+
+/* Parallax image quality */
+.about-page [class*="zoom-parallax"] img {
+  image-rendering: -webkit-optimize-contrast;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}

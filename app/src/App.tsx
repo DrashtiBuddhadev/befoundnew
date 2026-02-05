@@ -1,18 +1,12 @@
 import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import HeroSection from './home/heroSection/HeroSection';
-import PhilosophySection from './home/philosophySection/PhilosophySection';
-import ServicesSection from './home/servicesSection/ServicesSection';
-// import ImpactSection from './home/impactSection/ImpactSection';
-import ExperienceSection from './home/experienceSection/ExperienceSection';
-import ProjectsSection from './home/projectsSection/ProjectsSection';
-import CtaSection from './home/ctaSection/CtaSection';
-import FinalCtaSection from './home/finalCtaSection/FinalCtaSection';
-import FaqSection from './home/faqSection/FaqSection';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 import './App.css';
 
@@ -33,25 +27,23 @@ function App() {
   }, []);
 
   return (
-    <div className="relative bg-black min-h-screen">
+    <Router>
+      <div className="relative bg-black min-h-screen">
+        {/* Navigation */}
+        <Navigation />
 
-      {/* Navigation */}
-      <Navigation />
+        {/* Main content */}
+        <main className="relative">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
+        </main>
 
-      {/* Main content */}
-      <main className="relative">
-        <HeroSection />
-        <PhilosophySection />
-        <ServicesSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <CtaSection />
-        <FaqSection />
-      </main>
-
-      {/* Footer */}
-      <Footer />
-    </div>
+        {/* Footer */}
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
