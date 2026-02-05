@@ -93,7 +93,7 @@ export default function FaqSection() {
   }, []);
 
   const toggleItem = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+    setOpenIndex((prev) => (prev === index ? null : index));
   };
 
   return (
