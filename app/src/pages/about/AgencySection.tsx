@@ -1,5 +1,4 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ZoomParallax } from '../../components/ui/zoom-parallax';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -35,8 +34,6 @@ const workImages = [
 ];
 
 export default function AgencySection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   return (
     <section className="relative bg-white">
       {/* Pre-parallax intro */}

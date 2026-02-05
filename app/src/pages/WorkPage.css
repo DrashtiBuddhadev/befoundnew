@@ -1,0 +1,22 @@
+/* WorkPage styles */
+
+.work-page {
+  position: relative;
+}
+
+/* ── filter pills ────────────────────────────────────────────────────────── */
+.work-filter-btn {
+  will-change: transform, opacity;
+}
+
+/* ── grid cards ──────────────────────────────────────────────────────────── */
+.work-card {
+  will-change: transform, opacity;
+}
+
+/* mobile: taller cards for better visual rhythm */
+@media (max-width: 640px) {
+  .work-card > div:first-child {
+    aspect-ratio: 3 / 4;
+  }
+}
