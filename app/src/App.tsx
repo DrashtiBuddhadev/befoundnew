@@ -10,6 +10,7 @@ import AboutPage from './pages/AboutPage';
 import WorkPage from './pages/WorkPage';
 import ProjectDetailPage from './pages/work/ProjectDetailPage';
 import ContactPage from './pages/ContactPage';
+import ServicesPage from './pages/ServicesPage';
 
 import './App.css';
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/work" element={<WorkPage />} />
             <Route path="/work/:id" element={<ProjectDetailPage />} />
+            <Route path="/services" element={<ServicesPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>
