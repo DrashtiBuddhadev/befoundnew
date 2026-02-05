@@ -1,116 +1,157 @@
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const navLinks = [
   { label: 'Work', href: '#work' },
   { label: 'Services', href: '#services' },
+  { label: 'Process', href: '#process' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMenuOpen]);
+
   return (
     <>
+      {/* Minimal Navigation Bar */}
       <nav
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          isScrolled
-            ? 'bg-black/80 backdrop-blur-lg border-b border-white/5'
-            : 'bg-transparent'
+          isScrolled && !isMenuOpen ? 'bg-black/80 backdrop-blur-xl' : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <a href="#" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-black font-bold text-sm">N</span>
-              </div>
-              <span className="font-semibold text-white hidden sm:block">
-                NextGen
+        <div className="flex items-center justify-between px-6 sm:px-10 lg:px-16 h-20 lg:h-24">
+          {/* Logo - Stacked */}
+          <a href="#" className="relative z-[101]">
+            <div className="flex flex-col leading-[1.1]">
+              <span className={`text-lg font-medium tracking-tight transition-colors duration-500 ${isMenuOpen ? 'text-white' : 'text-white'}`}>
+                BeFound
               </span>
-            </a>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
+              <div className="flex items-baseline gap-0.5">
+                <span className={`text-lg font-medium tracking-tight transition-colors duration-500 ${isMenuOpen ? 'text-white' : 'text-white'}`}>
+                  Studio
+                </span>
+                <span className={`text-xs font-medium transition-colors duration-500 ${isMenuOpen ? 'text-indigo-400' : 'text-indigo-500'}`}>
+                  +
+                </span>
+              </div>
             </div>
+          </a>
 
-            {/* CTA Button */}
-            <div className="hidden lg:block">
-              <button className="px-5 py-2 bg-white text-black rounded-full text-sm font-medium hover:bg-white/90 transition-colors">
-                Start a project
-              </button>
+          {/* Right Side - Hamburger Only */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="relative z-[101] flex items-center gap-6"
+            aria-label="Toggle menu"
+          >
+            {/* Hamburger Icon */}
+            <div className="w-10 h-10 flex items-center justify-center">
+              <div className="relative w-7 h-5 flex flex-col justify-between">
+                <span
+                  className={`block h-[2px] bg-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] origin-center ${
+                    isMenuOpen ? 'rotate-45 translate-y-[9px]' : ''
+                  }`}
+                />
+                <span
+                  className={`block h-[2px] bg-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                    isMenuOpen ? 'opacity-0 scale-x-0' : ''
+                  }`}
+                />
+                <span
+                  className={`block h-[2px] bg-white transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] origin-center ${
+                    isMenuOpen ? '-rotate-45 -translate-y-[9px]' : ''
+                  }`}
+                />
+              </div>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-10 h-10 flex items-center justify-center text-white"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
+          </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Fullscreen Menu */}
       <div
-        className={`fixed inset-0 z-[99] bg-black transition-all duration-500 lg:hidden ${
-          isMobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
+        className={`fixed inset-0 z-[99] transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-8">
-          {navLinks.map((link, index) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-2xl font-medium text-white/70 hover:text-white transition-colors"
-              style={{
-                transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms',
-                transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-                opacity: isMobileMenuOpen ? 1 : 0,
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
-          <button
-            className="mt-8 px-8 py-3 bg-white text-black rounded-full font-medium"
-            style={{
-              transitionDelay: isMobileMenuOpen ? '200ms' : '0ms',
-              transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-              opacity: isMobileMenuOpen ? 1 : 0,
-            }}
+        {/* Background */}
+        <div
+          className={`absolute inset-0 bg-[#0a0a0a] transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] origin-top ${
+            isMenuOpen ? 'scale-y-100' : 'scale-y-0'
+          }`}
+        />
+
+        {/* Menu Content */}
+        <div className="relative h-full flex flex-col">
+          {/* Spacer */}
+          <div className="h-24 lg:h-28" />
+
+          {/* Main Navigation */}
+          <div className="flex-1 flex flex-col justify-center px-6 sm:px-10 lg:px-16">
+            <div className="max-w-7xl">
+              {navLinks.map((link, index) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="group block overflow-hidden"
+                >
+                  <div
+                    className={`flex items-center gap-6 py-3 md:py-4 border-b border-white/10 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                      isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+                    }`}
+                    style={{ transitionDelay: isMenuOpen ? `${index * 80 + 200}ms` : '0ms' }}
+                  >
+                    <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-white group-hover:text-indigo-400 transition-colors duration-300">
+                      {link.label}
+                    </span>
+                    <ArrowUpRight
+                      className="w-6 h-6 lg:w-8 lg:h-8 text-white/0 group-hover:text-indigo-400 translate-x-0 translate-y-0 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-300"
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div
+            className={`px-6 sm:px-10 lg:px-16 pb-8 lg:pb-12 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+              isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+            }`}
+            style={{ transitionDelay: isMenuOpen ? '600ms' : '0ms' }}
           >
-            Start a project
-          </button>
+            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8 pt-8 border-t border-white/10">
+              {/* Contact Info */}
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-widest text-white/30">Get in touch</p>
+                <a href="mailto:hello@befound.studio" className="block text-lg text-white hover:text-indigo-400 transition-colors">
+                  hello@befound.studio
+                </a>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex items-center gap-8">
+                <a href="#" className="text-sm text-white/50 hover:text-white transition-colors">Instagram</a>
+                <a href="#" className="text-sm text-white/50 hover:text-white transition-colors">LinkedIn</a>
+                <a href="#" className="text-sm text-white/50 hover:text-white transition-colors">Twitter</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
