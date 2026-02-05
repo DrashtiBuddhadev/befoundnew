@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Plus, ArrowRight } from 'lucide-react';
@@ -191,15 +192,15 @@ export default function FaqSection() {
                 Let's discuss your <span className="text-indigo-400">project</span>.
               </p>
             </div>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="group inline-flex items-center gap-4"
             >
               <span className="text-white/70 group-hover:text-white transition-colors">Get in touch</span>
               <span className="w-12 h-12 border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-300">
                 <ArrowRight className="w-5 h-5 text-white group-hover:text-black transition-colors" />
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

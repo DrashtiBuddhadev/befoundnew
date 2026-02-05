@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
@@ -64,8 +65,8 @@ export default function CtaSection() {
       className="cta-section relative w-full bg-[#fafafa] overflow-hidden"
     >
       {/* Main CTA Area */}
-      <a
-        href="#contact"
+      <Link
+        to="/contact"
         className="cta-link block relative py-32 md:py-40 lg:py-48 group cursor-pointer"
       >
         {/* Hover Background */}
@@ -104,7 +105,7 @@ export default function CtaSection() {
         <div className="absolute top-8 right-8 w-12 h-12 border-r border-t border-black/10 group-hover:border-white/20 transition-colors duration-500" />
         <div className="absolute bottom-8 left-8 w-12 h-12 border-l border-b border-black/10 group-hover:border-white/20 transition-colors duration-500" />
         <div className="absolute bottom-8 right-8 w-12 h-12 border-r border-b border-black/10 group-hover:border-white/20 transition-colors duration-500" />
-      </a>
+      </Link>
 
       {/* Bottom Border */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-black/5" />

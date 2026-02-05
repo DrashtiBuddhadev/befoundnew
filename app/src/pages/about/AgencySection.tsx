@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ZoomParallax } from '../../components/ui/zoom-parallax';
 import { ArrowUpRight } from 'lucide-react';
@@ -110,15 +111,15 @@ export default function AgencySection() {
               <p className="text-lg text-white/50 leading-relaxed">
                 We aim to be a single, reliable partner for our clients' digital needs by delivering thoughtful design, solid engineering, and measurable outcomes without unnecessary complexity or inflated costs.
               </p>
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="group inline-flex items-center gap-3 text-white"
               >
                 <span className="text-sm font-medium">Work with us</span>
                 <span className="w-10 h-10 border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-300">
                   <ArrowUpRight className="w-4 h-4 group-hover:text-black transition-colors" />
                 </span>
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>
