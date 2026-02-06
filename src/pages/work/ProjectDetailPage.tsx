@@ -7,6 +7,7 @@ import { ArrowUpRight, ArrowLeft, ExternalLink } from 'lucide-react';
 import Lenis from '@studio-freight/lenis';
 import { getProjectById, projects } from './projectsData';
 import KeyHighlights from './KeyHighlights';
+import MoodboardSection from './MoodboardSection';
 import CtaSection from '../../home/ctaSection/CtaSection';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -283,6 +284,13 @@ export default function ProjectDetailPage() {
       <div ref={highlightsRef}>
         <KeyHighlights highlights={project.highlights} />
       </div>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          SECTION 3  –  MOODBOARD  (palette + mockups) — rendered only when data exists
+          ══════════════════════════════════════════════════════════════════════ */}
+      {project.moodboard && (
+        <MoodboardSection moodboard={project.moodboard} />
+      )}
 
       {/* ══════════════════════════════════════════════════════════════════════
           SECTION 4  –  3-CARD STRIP  (prev · current · next project)

@@ -129,13 +129,13 @@ export default function KeyHighlights({
           </div>
 
           {/* ── RIGHT – image panel ──────────────────────────────── */}
-          <div className="relative h-[280px] sm:h-[360px] lg:h-[420px] overflow-hidden rounded-sm">
+          <div className="relative overflow-hidden rounded-sm">
             <AnimatePresence mode="wait">
               {highlights.map((h, i) =>
                 i === current ? (
                   <motion.div
                     key={i}
-                    className="absolute inset-0"
+                    className="relative"
                     initial={{ opacity: 0, scale: 1.04 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.97 }}
@@ -144,10 +144,10 @@ export default function KeyHighlights({
                     <img
                       src={h.image}
                       alt={h.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-contain"
                     />
                     {/* bottom gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/20 via-transparent to-transparent pointer-events-none" />
                   </motion.div>
                 ) : null
               )}
