@@ -44,7 +44,7 @@ export default function FounderSection() {
                 transition={{ duration: 0.8 }}
                 className="text-xl md:text-2xl lg:text-3xl font-light text-black leading-[1.3] mb-6"
               >
-                "Design should solve problems—
+                "Design should solve problems
                 <span className="text-indigo-600"> not create new ones</span>."
               </motion.blockquote>
 

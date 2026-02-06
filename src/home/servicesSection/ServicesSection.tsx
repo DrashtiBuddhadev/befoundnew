@@ -20,13 +20,13 @@ const services = [
     description:
       "Not every brand needs the same platform and not every platform suits the same goals. We build on WordPress, Shopify, and Webflow to engineer the right environment for your business to live, grow, and scale. Development should be invisible not in capability, but in experience. We build websites that are fast, secure, and structurally sound.",
     image: '/images/work/Muse & Masterpiece Mockup.png',
-    tags: ['Pixel-Perfect Translation', 'Shpify, Wordpress, Webflows', 'Client-First Framework- MERN Stack', 'Technical SEO'],
+    tags: ['Pixel Perfect Translation', 'Shpify, Wordpress, Webflows', 'Client-First Framework- MERN Stack', 'Technical SEO'],
   },
   {
     year: '2025',
     title: 'End-to-End Package',
     description:
-      "The friction-free solution. One team, one vision, one process, from concept to deployment. No misalignment, no handover issues, no wasted iteration. When design and development live together, things move faster, cleaner, and with more precision. The result? A finished product that looks right, works right, and feels intentional from end to end.",
+      "The friction free solution. One team, one vision, one process, from concept to deployment. No misalignment, no handover issues, no wasted iteration. When design and development live together, things move faster, cleaner, and with more precision. The result? A finished product that looks right, works right, and feels intentional from end to end.",
     image: '/images/work/NW9 Design System Mockup.png',
     tags: ['Full Project Lifecycle', 'Design + Development + SEO', 'Unified Vision', 'Rapid Iteration', 'Post-Launch Maintenance Support'],
   },
@@ -42,7 +42,7 @@ const services = [
     year: '2025',
     title: 'SEO',
     description:
-      "People Google everything. The question is: do they find you or your competitor? We fine-tune the foundation of your site so search engines trust you, users discover you, and conversions follow. Clean structure, compelling content, smart keywords, fast performance, all aligned with how real users search and buy. Organic growth, sustainable results, measurable impact. No gimmicks.",
+      "People Google everything. The question is: do they find you or your competitor? We fine tune the foundation of your site so search engines trust you, users discover you, and conversions follow. Clean structure, compelling content, smart keywords, fast performance, all aligned with how real users search and buy. Organic growth, sustainable results, measurable impact. No gimmicks.",
     image: '/images/work/Weston Dental Mockup.png',
     tags: ['Technical SEO', 'On-Page SEO', 'Performance Optimization', 'Analytics & Reporting'],
   },
@@ -138,8 +138,8 @@ export default function ServicesSection() {
             className="service-card sticky top-0"
             style={{ zIndex: index + 1 }}
           >
-            <div className="min-h-screen bg-[#0a0a0a] border-t border-white/10">
-              <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+            <div className="min-h-screen lg:min-h-[90vh] xl:min-h-screen bg-[#0a0a0a] border-t border-white/10">
+              <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-screen lg:min-h-[90vh] xl:min-h-screen">
                 {/* Left - Image */}
                 <div className="relative flex items-center justify-center p-8 lg:p-16 bg-[#0f0f0f]">
                   <div className="absolute top-6 left-6 lg:top-10 lg:left-10">
@@ -155,18 +155,18 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Right - Content */}
-                <div className="flex flex-col justify-center p-8 lg:p-16 xl:p-24">
+                <div className="flex flex-col justify-center p-8 lg:p-8 xl:p-12 2xl:p-16">
                   <div className="max-w-xl">
                     {/* Year */}
-                    <p className="text-sm font-mono text-white/40 mb-6">( {service.year} )</p>
+                    <p className="text-sm font-mono text-white/40 mb-4 lg:mb-3 xl:mb-6">( {service.year} )</p>
 
                     {/* Title */}
-                    <h3 className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white mb-8">
+                    <h3 className="text-4xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium tracking-tight text-white mb-4 lg:mb-4 xl:mb-6 2xl:mb-8">
                       {service.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-base lg:text-lg text-white/60 leading-relaxed mb-12">
+                    <p className="text-base lg:text-sm xl:text-base 2xl:text-lg text-white/60 leading-relaxed mb-6 lg:mb-6 xl:mb-8 2xl:mb-12">
                       {service.description}
                     </p>
 

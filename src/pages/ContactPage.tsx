@@ -152,7 +152,7 @@ export default function ContactPage() {
     try {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      
+
       console.log('Form data:', data);
       setSubmitStatus('success');
       reset();
@@ -175,7 +175,7 @@ export default function ContactPage() {
       {/* Hero Section with Form */}
       <section
         ref={heroRef}
-        className="relative w-full h-screen flex items-center overflow-hidden"
+        className="relative w-full h-screen flex items-center overflow-hidden pt-20 lg:pt-24"
       >
         {/* Background Video */}
         <div className="absolute inset-0">
@@ -198,18 +198,18 @@ export default function ContactPage() {
             {/* Left: Hero Content */}
             <div className="lg:col-span-2">
               <div className="overflow-hidden mb-0 pb-2">
-                <h1 className="contact-hero-title text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[4.5rem] xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1] text-white">
+                <h1 className="contact-hero-title text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1] text-white">
                   Let's Create{' '}
                   <span className="text-indigo-500">Something</span>
                 </h1>
               </div>
               <div className="overflow-hidden mb-8 pb-2">
-                <h1 className="contact-hero-title text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[4.5rem] xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1] text-white">
+                <h1 className="contact-hero-title text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1] text-white">
                   <span className="text-indigo-500">Amazing</span> Together
                 </h1>
               </div>
               <div className="overflow-hidden pb-2">
-                <p className="contact-hero-subtitle text-lg md:text-xl text-white/60 max-w-lg">
+                <p className="contact-hero-subtitle text-lg md:text-lg lg:text-lg xl:text-xl text-white/60 max-w-lg">
                   Have a project in mind? We'd love to hear about it. Drop us a message
                   and let's start building something extraordinary.
                 </p>
@@ -285,23 +285,23 @@ export default function ContactPage() {
                     )}
                   </div>
 
-                {/* Message */}
-                <div className="space-y-2">
-                  <label htmlFor="message" className="block text-sm text-white/70">
-                    Message <span className="text-indigo-500">*</span>
-                  </label>
-                  <Textarea
-                    id="message"
-                    {...register('message')}
-                    placeholder="Tell us about your project..."
+                  {/* Message */}
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="block text-sm text-white/70">
+                      Message <span className="text-indigo-500">*</span>
+                    </label>
+                    <Textarea
+                      id="message"
+                      {...register('message')}
+                      placeholder="Tell us about your project..."
                       rows={4}
                       className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-indigo-500 resize-none rounded-none"
-                    aria-invalid={!!errors.message}
-                  />
-                  {errors.message && (
-                    <p className="text-sm text-red-400">{errors.message.message}</p>
-                  )}
-                </div>
+                      aria-invalid={!!errors.message}
+                    />
+                    {errors.message && (
+                      <p className="text-sm text-red-400">{errors.message.message}</p>
+                    )}
+                  </div>
 
                   {/* Submit Button */}
                   <div className="pt-2">
@@ -314,7 +314,7 @@ export default function ContactPage() {
                         {isSubmitting ? 'Sending...' : 'Send Message'}
                       </span>
                       <Send className="relative z-10 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                      
+
                       {/* Hover effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </button>

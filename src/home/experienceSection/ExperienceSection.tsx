@@ -124,7 +124,7 @@ const processSteps = [
     number: '03',
     title: 'Built beautifully.',
     subtitle: 'Built correctly.',
-    description: 'We engineer with care: from CMS to checkout. Fast, secure, scalable, and future-proof. Tech should enable ideas, not complicate them.',
+    description: 'We engineer with care: from CMS to checkout. Fast, secure, scalable, and future proof. Tech should enable ideas, not complicate them.',
     footnote: 'Built for today. Ready for tomorrow.',
     bgColor: 'bg-[#0a0a0a]',
     textColor: 'text-white',

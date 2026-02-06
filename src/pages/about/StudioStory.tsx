@@ -76,7 +76,7 @@ export default function StudioStory() {
             Our work lives at the intersection of{' '}
             <span className="text-indigo-600 font-medium">strategy</span>,{' '}
             <span className="text-indigo-600 font-medium">design</span>, and{' '}
-            <span className="text-indigo-600 font-medium">technology</span>—where ideas become systems, and systems create outcomes.
+            <span className="text-indigo-600 font-medium">technology</span> where ideas become systems, and systems create outcomes.
           </p>
         </motion.div>
       </div>

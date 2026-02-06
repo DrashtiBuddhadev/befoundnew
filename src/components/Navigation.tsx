@@ -129,11 +129,11 @@ export default function Navigation() {
                     className="group block overflow-hidden"
                   >
                     <div
-                      className={`flex items-center gap-6 py-3 md:py-4 border-b border-white/10 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+                      className={`flex items-center gap-6 py-2 md:py-2 lg:py-1.5 xl:py-2 2xl:py-4 border-b border-white/10 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
                         }`}
                       style={{ transitionDelay: isMenuOpen ? `${index * 80 + 200}ms` : '0ms' }}
                     >
-                      <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-white group-hover:text-indigo-400 transition-colors duration-300">
+                      <span className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-5xl 2xl:text-8xl font-light text-white group-hover:text-indigo-400 transition-colors duration-300">
                         {link.label}
                       </span>
                       <ArrowUpRight
@@ -149,11 +149,11 @@ export default function Navigation() {
                     className="group block overflow-hidden"
                   >
                     <div
-                      className={`flex items-center gap-6 py-3 md:py-4 border-b border-white/10 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+                      className={`flex items-center gap-6 py-2 md:py-2 lg:py-1.5 xl:py-2 2xl:py-4 border-b border-white/10 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
                         }`}
                       style={{ transitionDelay: isMenuOpen ? `${index * 80 + 200}ms` : '0ms' }}
                     >
-                      <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-white group-hover:text-indigo-400 transition-colors duration-300">
+                      <span className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-5xl 2xl:text-8xl font-light text-white group-hover:text-indigo-400 transition-colors duration-300">
                         {link.label}
                       </span>
                       <ArrowUpRight
@@ -172,7 +172,7 @@ export default function Navigation() {
               }`}
             style={{ transitionDelay: isMenuOpen ? '600ms' : '0ms' }}
           >
-            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8 pt-8 border-t border-white/10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8 pt-8">
               {/* Contact Info */}
               <div className="space-y-4">
                 <p className="text-xs uppercase tracking-widest text-white/30">Get in touch</p>

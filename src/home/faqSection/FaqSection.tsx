@@ -11,7 +11,7 @@ const faqs = [
   {
     question: 'What is the typical investment for a project?',
     answer:
-      'Project investments typically range from $10,000 to $100,000+ depending on scope, complexity, and timeline. We provide detailed proposals after our initial discovery call to ensure transparency and alignment with your budget.',
+      'Project investments typically range from $400 to $1000 depending on scope, complexity, and timeline. We provide detailed proposals after our initial discovery call to ensure transparency and alignment with your budget.',
   },
   {
     question: 'Do you offer unpaid tests or pilot phases?',
@@ -130,42 +130,36 @@ export default function FaqSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`faq-item group relative bg-white/[0.02] border transition-all duration-500 cursor-pointer ${
-                openIndex === index
-                  ? 'border-indigo-500/50 bg-white/[0.04]'
-                  : 'border-white/5 hover:border-white/10 hover:bg-white/[0.03]'
-              }`}
+              className={`faq-item group relative bg-white/[0.02] border transition-all duration-500 cursor-pointer ${openIndex === index
+                ? 'border-indigo-500/50 bg-white/[0.04]'
+                : 'border-white/5 hover:border-white/10 hover:bg-white/[0.03]'
+                }`}
               onClick={() => toggleItem(index)}
             >
               {/* Question */}
               <div className="flex items-start justify-between gap-4 p-6 md:p-8">
                 <div className="flex items-start gap-4 md:gap-6">
-                  <span className={`text-xs font-mono mt-1 transition-colors duration-300 ${
-                    openIndex === index ? 'text-indigo-400' : 'text-white/30'
-                  }`}>
+                  <span className={`text-xs font-mono mt-1 transition-colors duration-300 ${openIndex === index ? 'text-indigo-400' : 'text-white/30'
+                    }`}>
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <h3 className={`text-base md:text-lg font-medium leading-snug transition-colors duration-300 ${
-                    openIndex === index ? 'text-white' : 'text-white/80 group-hover:text-white'
-                  }`}>
+                  <h3 className={`text-base md:text-lg font-medium leading-snug transition-colors duration-300 ${openIndex === index ? 'text-white' : 'text-white/80 group-hover:text-white'
+                    }`}>
                     {faq.question}
                   </h3>
                 </div>
-                <div className={`flex-shrink-0 w-8 h-8 border flex items-center justify-center transition-all duration-500 ${
-                  openIndex === index
-                    ? 'bg-indigo-500 border-indigo-500 rotate-45'
-                    : 'border-white/20 group-hover:border-white/40'
-                }`}>
-                  <Plus className={`w-4 h-4 transition-colors duration-300 ${
-                    openIndex === index ? 'text-white' : 'text-white/50'
-                  }`} />
+                <div className={`flex-shrink-0 w-8 h-8 border flex items-center justify-center transition-all duration-500 ${openIndex === index
+                  ? 'bg-indigo-500 border-indigo-500 rotate-45'
+                  : 'border-white/20 group-hover:border-white/40'
+                  }`}>
+                  <Plus className={`w-4 h-4 transition-colors duration-300 ${openIndex === index ? 'text-white' : 'text-white/50'
+                    }`} />
                 </div>
               </div>
 
               {/* Answer */}
-              <div className={`faq-answer overflow-hidden transition-all duration-500 ${
-                openIndex === index ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
-              }`}>
+              <div className={`faq-answer overflow-hidden transition-all duration-500 ${openIndex === index ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
+                }`}>
                 <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0">
                   <div className="pl-8 md:pl-12 border-l border-white/10">
                     <p className="text-sm md:text-base text-white/60 leading-relaxed">
@@ -176,9 +170,8 @@ export default function FaqSection() {
               </div>
 
               {/* Accent line */}
-              <div className={`absolute bottom-0 left-0 h-[2px] bg-indigo-500 transition-all duration-500 ${
-                openIndex === index ? 'w-full' : 'w-0'
-              }`} />
+              <div className={`absolute bottom-0 left-0 h-[2px] bg-indigo-500 transition-all duration-500 ${openIndex === index ? 'w-full' : 'w-0'
+                }`} />
             </div>
           ))}
         </div>
