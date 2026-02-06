@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import StickyContactButtons from './components/StickyContactButtons';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import WorkPage from './pages/WorkPage';
@@ -47,6 +48,9 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>
+
+        {/* Sticky Contact Buttons */}
+        <StickyContactButtons />
 
         {/* Footer */}
         <Footer />
