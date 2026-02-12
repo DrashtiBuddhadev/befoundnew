@@ -1000,6 +1000,7 @@ export const projects: Project[] = [
     industry: 'Technology / SaaS',
     tools: 'React.js, Figma, Vite, CSS Modules',
     functionality: 'Modern web application built with React.js featuring component-based architecture, responsive design, and optimized performance for seamless user experience.',
+    liveUrl: 'https://www.lumnlab.com/',
     videoUrl: 'https://play.gumlet.io/embed/698b27f4aec3d4e420dbf3a9',
     highlights: [
       {
