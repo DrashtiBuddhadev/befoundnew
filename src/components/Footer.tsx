@@ -1,4 +1,4 @@
-import { ArrowUpRight, Twitter, Linkedin, Instagram, Github } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const footerLinks = {
   services: [
@@ -19,13 +19,6 @@ const footerLinks = {
     { label: 'Terms of Service', href: '#' },
   ],
 };
-
-const socialLinks = [
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Github, href: '#', label: 'GitHub' },
-];
 
 export default function Footer() {
   return (
