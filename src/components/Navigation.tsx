@@ -3,11 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Home', href: '/', isRoute: true },
-  { label: 'About', href: '/about', isRoute: true },
-  // { label: 'Work', href: '/work', isRoute: true }, // Hidden for launch
-  { label: 'Services', href: '/services', isRoute: true },
-  { label: 'Contact', href: '/contact', isRoute: true },
+  { label: 'Home', href: '/', isRoute: true, disabled: false },
+  { label: 'About', href: '/about', isRoute: true, disabled: false },
+  { label: 'Work', href: '/work', isRoute: true, disabled: true, comingSoon: true },
+  { label: 'Services', href: '/services', isRoute: true, disabled: false },
+  { label: 'Contact', href: '/contact', isRoute: true, disabled: false },
 ];
 
 export default function Navigation() {
@@ -120,8 +120,33 @@ export default function Navigation() {
           {/* Main Navigation */}
           <div className="flex-1 flex flex-col justify-center px-6 sm:px-10 lg:px-16">
             <div className="max-w-7xl">
-              {navLinks.map((link, index) => (
-                link.isRoute ? (
+              {navLinks.map((link, index) => {
+                // If link is disabled (Coming Soon)
+                if (link.disabled) {
+                  return (
+                    <div
+                      key={link.label}
+                      className="group block overflow-hidden cursor-not-allowed relative"
+                    >
+                      <div
+                        className={`flex items-center justify-between gap-6 py-2 md:py-2 lg:py-1.5 xl:py-2 2xl:py-4 border-b border-white/10 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+                          }`}
+                        style={{ transitionDelay: isMenuOpen ? `${index * 80 + 200}ms` : '0ms' }}
+                      >
+                        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-5xl 2xl:text-8xl font-light text-white/40 transition-colors duration-300">
+                          {link.label}
+                        </span>
+                        {/* Coming Soon Badge */}
+                        <span className="text-xs sm:text-sm font-medium px-3 py-1 bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          Coming Soon
+                        </span>
+                      </div>
+                    </div>
+                  );
+                }
+
+                // Regular clickable links
+                return link.isRoute ? (
                   <Link
                     key={link.label}
                     to={link.href}
@@ -161,8 +186,8 @@ export default function Navigation() {
                       />
                     </div>
                   </a>
-                )
-              ))}
+                );
+              })}
             </div>
           </div>
 

@@ -9,8 +9,7 @@ const footerLinks = {
   ],
   company: [
     { label: 'About', href: '#' },
-    { label: 'Work', href: '/work' },
-    { label: 'Careers', href: '#' },
+    { label: 'Work', href: '#' },
     { label: 'Contact', href: '#' },
   ],
   resources: [
@@ -94,36 +93,6 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-          </div>
-        </div>
-
-        {/* Bottom section */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/10">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-black font-bold text-sm">N</span>
-            </div>
-            <span className="font-semibold">NextGen</span>
-          </div>
-
-          {/* Copyright */}
-          <p className="text-sm text-white/50">
-            © {new Date().getFullYear()} NextGen. All rights reserved.
-          </p>
-
-          {/* Social links */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-all"
-                aria-label={social.label}
-              >
-                <social.icon className="w-4 h-4" />
-              </a>
-            ))}
           </div>
         </div>
       </div>
