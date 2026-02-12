@@ -32,6 +32,31 @@ export interface Moodboard {
   images: MoodboardImage[];
 }
 
+/** Wireframe step showing design evolution */
+export interface WireframeStep {
+  title: string;
+  description: string;
+  image: string;
+  type: 'low-fidelity' | 'high-fidelity' | 'final-design';
+  learnings?: string;
+}
+
+/** Design progression stage */
+export interface DesignProgression {
+  stage: 'research' | 'wireframe' | 'prototype' | 'final';
+  title: string;
+  description: string;
+  learnings?: string;
+  image: string;
+}
+
+/** Typography system definition */
+export interface TypographySystem {
+  primary: { name: string; weights: string[] };
+  secondary?: { name: string; weights: string[] };
+  scale: Array<{ name: string; size: string; weight: string; sample: string }>;
+}
+
 export interface Project {
   id: number;
   title: string;
@@ -59,13 +84,99 @@ export interface Project {
   functionality: string;
   /** Optional live-site URL */
   liveUrl?: string;
+  /** Optional video/GIF URL for project showcase */
+  videoUrl?: string;
   /** Key-highlights steps shown in the auto-play stepper */
   highlights: Highlight[];
   /** Optional moodboard: palette + mockup images */
   moodboard?: Moodboard;
+  /** Optional wireframe progression (for design case studies) */
+  wireframes?: WireframeStep[];
+  /** Optional design progression timeline */
+  designProgression?: DesignProgression[];
+  /** Optional typography system */
+  typography?: TypographySystem;
+  /** Figma prototype embed URL */
+  figmaPrototype?: string;
+  /** Design principles */
+  designPrinciples?: string[];
 }
 
 export const projects: Project[] = [
+  {
+    id: 15,
+    title: 'Soulful Swaad',
+    category: 'Brand Identity',
+    tags: ['Logo and Branding', 'Food & Beverage', 'Cloud Kitchen'],
+    image: '/images/logo&branding/1.jpg',
+    year: '2025',
+    description:
+      'A heartfelt brand identity for a mother-daughter Gujarati cloud kitchen celebrating authentic homemade flavors and culinary heritage.',
+    overview:
+      'Soulful Swaad is where tradition meets passion — a cloud kitchen born from a mother\'s timeless recipes and her daughter\'s vision to share Gujarat\'s authentic flavors with the world. We crafted a complete brand identity that honors the warmth of home cooking while establishing a vibrant, contemporary presence. Every dal, every thepla, every perfectly spiced undhiyu is treated not as a transaction, but as an invitation to their family table.',
+    services: [
+      'Logo design & brand mark',
+      'Brand identity system',
+      'Color palette development',
+      'Typography selection',
+      'Brand guidelines',
+      'Packaging & collateral design',
+    ],
+    client: 'Soulful Swaad Cloud Kitchen',
+    gallery: [
+      '/images/logo&branding/1.jpg',
+      '/images/logo&branding/2.jpg',
+      '/images/logo&branding/3.jpg',
+      '/images/logo&branding/4.jpg',
+      '/images/logo&branding/5.jpg',
+      '/images/logo&branding/6.jpg',
+    ],
+    country: 'India',
+    industry: 'Food & Beverage / Cloud Kitchen',
+    tools: 'Adobe Illustrator, Photoshop, Figma',
+    functionality: 'Complete brand identity system including logo design, color palette, typography, brand applications across signage, packaging, and digital touchpoints.',
+    highlights: [
+      {
+        step: '01',
+        title: 'Logo Conceptualization',
+        content: 'The ornamental "S" letterform draws inspiration from traditional Gujarati motifs and cooking utensils — spoons, sauté pans, and fresh ingredients — symbolizing the sacred space where love transforms into food.',
+        image: '/images/logo&branding/3.jpg',
+      },
+      {
+        step: '02',
+        title: 'Vibrant Color Palette',
+        content: 'Paradise Pink (#E43B64) represents warmth and hospitality, while Deep Green (#03615B) evokes fresh ingredients and traditional values. Together they create a bold, appetizing contrast that stands out in the cloud kitchen space.',
+        image: '/images/logo&branding/4.jpg',
+      },
+      {
+        step: '03',
+        title: 'Brand Story & Voice',
+        content: 'Crafted a narrative celebrating Gujarati hospitality, generational wisdom, and the belief that food made with pure intentions becomes a homecoming. Every touchpoint reinforces the mother-daughter bond and authentic cooking methods.',
+        image: '/images/logo&branding/2.jpg',
+      },
+      {
+        step: '04',
+        title: 'Real-World Applications',
+        content: 'Applied the identity across signage, packaging, business cards, and digital platforms. The logo works beautifully on circular signage, menu cards, and delivery packaging — maintaining legibility and warmth at every scale.',
+        image: '/images/logo&branding/5.jpg',
+      },
+    ],
+    moodboard: {
+      palette: [
+        { color: '#E43B64', label: 'Paradise Pink' },
+        { color: '#03615B', label: 'Deep Green' },
+        { color: '#f4f4f4', label: 'Cultured White' },
+        { color: '#191919', label: 'Classy Black' },
+      ],
+      images: [
+        { src: '/images/logo&branding/1.jpg', caption: 'Logo on Food Background' },
+        { src: '/images/logo&branding/3.jpg', caption: 'Logo Element Breakdown' },
+        { src: '/images/logo&branding/5.jpg', caption: 'Signage & Packaging Mockups' },
+        { src: '/images/logo&branding/4.jpg', caption: 'Color Palette System' },
+        { src: '/images/logo&branding/2.jpg', caption: 'Brand Story' },
+      ],
+    },
+  },
   {
     id: 1,
     title: 'Kaizen Dezain',
@@ -144,18 +255,18 @@ export const projects: Project[] = [
     id: 2,
     title: 'Muse & Masterpiece',
     category: 'Creative / Portfolio',
-    tags: ['Creative', 'Portfolio', 'Web Design', 'Art Gallery', 'Heritage Design'],
+    tags: ['Creative', 'Portfolio', 'Web Design', 'Art Gallery', 'Heritage Design', 'React.js'],
     image: '/images/work/Muse & Masterpiece Mockup.png',
     year: '2024',
     description:
       'A bold creative portfolio bridging India\'s artistic heritage with contemporary design through vibrant contrasts and emotional storytelling.',
     overview:
-      'Muse & Masterpiece Studio is where India\'s artistic heritage meets contemporary design expression. The site embodies a "vibrant metamorphosis of color" spanning the full emotional spectrum — from classic Inky Black and White foundations to energetic Neon Pink and Electric Blue accents. Through masterful contrast and refined typography (Cormorant Garamond paired with Manrope), the design communicates creative liberation while honoring timeless artistic traditions.',
+      'Muse & Masterpiece Studio is where India\'s artistic heritage meets contemporary design expression. Built with React.js, the site embodies a "vibrant metamorphosis of color" spanning the full emotional spectrum — from classic Inky Black and White foundations to energetic Neon Pink and Electric Blue accents. Through masterful contrast and refined typography (Cormorant Garamond paired with Manrope), the design communicates creative liberation while honoring timeless artistic traditions.',
     services: [
+      'Website development',
+      'React.js implementation',
       'Artistic branding & identity',
-      'Mural & sculpture curation',
       'Contemporary art showcase',
-      'Heritage-driven visual storytelling',
     ],
     client: 'Muse & Masterpiece Studio',
     gallery: [
@@ -165,9 +276,10 @@ export const projects: Project[] = [
     ],
     country: 'India',
     industry: 'Creative / Art Studio',
-    tools: 'Figma, React (Vite), Tailwind CSS',
-    functionality: 'Art portfolio and gallery showcase with curated project visuals, artist profiles, and heritage storytelling.',
+    tools: 'React.js (Vite), Figma, Tailwind CSS',
+    functionality: 'Art portfolio and gallery showcase built with React.js featuring curated project visuals, artist profiles, and heritage storytelling with smooth animations.',
     liveUrl: 'https://www.museandmasterpiece.in/',
+    videoUrl: 'https://play.gumlet.io/embed/69898b24924a60df4b4e59c0',
     highlights: [
       {
         step: '01',
@@ -213,18 +325,18 @@ export const projects: Project[] = [
     id: 3,
     title: 'Weston Family Dental',
     category: 'Healthcare / Clinic',
-    tags: ['Healthcare UX', 'Web Design', 'Appointment', 'Responsive'],
+    tags: ['Healthcare UX', 'Web Design', 'Appointment', 'Responsive', 'WordPress'],
     image: '/images/work/Weston Dental Mockup.png',
     year: '2025',
     description:
-      'A patient-centric healthcare site for a Florida dental clinic, built around trust, accessibility, and appointment booking.',
+      'A comprehensive healthcare website providing dental services, SEO optimization, and targeted advertising solutions.',
     overview:
-      'Weston Family Dental Florida is a dental clinic site providing healthcare services, appointment booking, and information about treatments. The site leads with calm, trust-building visuals and clear service listings, making it effortless for patients and families to find what they need and book with confidence.',
+      'Weston Family Dental Florida is a technology-driven dental clinic site built on WordPress. We delivered complete website development, search engine optimization, and digital advertising campaigns to help them reach more patients and grow their practice online.',
     services: [
-      'Dental care services (checkups, treatments, cosmetic)',
-      'Patient education',
-      'Appointment booking CTA',
-      'Contact & location integration',
+      'Website development',
+      'SEO optimization',
+      'Digital advertising (Google Ads)',
+      'WordPress customization',
     ],
     client: 'Weston Family Dental Florida',
     gallery: [
@@ -233,10 +345,11 @@ export const projects: Project[] = [
       '/images/work/Weston Dental Mockup.png',
     ],
     country: 'United States',
-    industry: 'Healthcare / Dental',
-    tools: 'Figma, WordPress, Google Analytics',
-    functionality: 'Healthcare service site with appointment information, services list, patient resources, and contact details.',
+    industry: 'Technology / Healthcare',
+    tools: 'WordPress, Figma, Google Analytics, Google Ads',
+    functionality: 'Full-featured dental services website with SEO optimization, appointment booking integration, and ad campaign management for patient acquisition.',
     liveUrl: 'https://westonfamilydentalflorida.com/',
+    videoUrl: 'https://play.gumlet.io/embed/69898b244db88a967f7d9aba',
     highlights: [
       {
         step: '01',
@@ -408,18 +521,18 @@ export const projects: Project[] = [
     id: 6,
     title: 'Blue Escape Holidays',
     category: 'Travel & Tourism',
-    tags: ['Travel', 'UX Design', 'Web Design', 'Responsive', 'Contact Forms'],
-    image: '/images/work/mockup.png',
+    tags: ['Full-Stack', 'Web Application', 'Custom Package', 'Next.js', 'Node.js'],
+    image: '/images/work/blueEscape.png',
     year: '2025',
     description:
-      'A luxury travel booking site showcasing bespoke holiday packages and curated destination experiences.',
+      'A full-stack travel booking platform with custom package builder, admin panel, and seamless user experience.',
     overview:
-      'Blue Escape Holidays is a travel solutions provider offering luxury and customized holiday packages, assisting users with curated experiences based on global destinations. The site pairs bright destination imagery with clear trip-package listings, making it easy for travellers to browse, plan, and enquire.',
+      'Blue Escape Holidays is a comprehensive travel solutions platform built with modern full-stack architecture. We delivered a custom package booking system with a powerful admin panel for managing destinations and packages, paired with a stunning frontend experience for travelers to explore and book their dream holidays.',
     services: [
-      'Travel package representation',
-      'Tour planning',
-      'Destination curation',
-      'Contact / enquiry forms',
+      'Custom package development',
+      'Full-stack web application',
+      'Admin panel & dashboard',
+      'Frontend development',
     ],
     client: 'Blue Escape Holidays',
     gallery: [
@@ -429,9 +542,10 @@ export const projects: Project[] = [
     ],
     country: 'United Kingdom',
     industry: 'Travel & Tourism',
-    tools: 'Figma, Next.js, Tailwind CSS',
-    functionality: 'Travel booking and trip planning site with bespoke packages, destination showcases, and enquiry forms.',
+    tools: 'Next.js, Node.js (NestJS), MySQL, Figma, Tailwind CSS',
+    functionality: 'Full-stack web application featuring custom package builder, admin panel for content management, MySQL database integration, and responsive frontend built with Next.js.',
     liveUrl: 'https://www.blueescapeholidays.com/',
+    videoUrl: 'https://play.gumlet.io/embed/69898b244db88a967f7d9ab8',
     highlights: [
       {
         step: '01',
@@ -473,18 +587,18 @@ export const projects: Project[] = [
     id: 7,
     title: 'Crazy Virality',
     category: 'Marketing / Agency',
-    tags: ['Digital Marketing', 'UX', 'Web Design', 'SEO', 'Lead Generation'],
-    image: '/images/work/mockup.png',
+    tags: ['Digital Marketing', 'Web Design', 'Website Development', 'Agency'],
+    image: '/images/work/crazyvirality.png',
     year: '2025',
     description:
-      'A bold digital marketing agency site designed to capture leads and communicate growth-driven services.',
+      'A bold digital marketing agency website built to showcase services and drive client engagement.',
     overview:
-      'Crazy Virality is a digital marketing and growth agency designed to help brands expand audience reach, optimise presence, and boost conversions. The site leads with high-contrast messaging and trust-building testimonials, driving prospects toward consultation CTAs.',
+      'Crazy Virality is a digital marketing and growth agency. We delivered comprehensive website development that effectively communicates their expertise in helping brands expand their reach. The site features high-impact messaging, service showcases, and strategic calls-to-action designed to convert visitors into clients.',
     services: [
-      'Digital marketing',
-      'SEO',
-      'Social media strategy',
-      'Traffic & growth planning',
+      'Website development',
+      'Digital marketing presentation',
+      'Service showcase design',
+      'Lead generation optimization',
     ],
     client: 'Crazy Virality',
     gallery: [
@@ -495,8 +609,9 @@ export const projects: Project[] = [
     country: 'United Kingdom',
     industry: 'Marketing / Agency',
     tools: 'Figma, Next.js, Tailwind CSS',
-    functionality: 'Marketing agency site with service pages, lead capture forms, and consultation CTAs.',
+    functionality: 'Marketing agency website development with strategic service presentation, testimonial integration, and optimized conversion pathways.',
     liveUrl: 'https://www.crazyvirality.com/',
+    videoUrl: 'https://play.gumlet.io/embed/69898b244db88a967f7d9ab6',
     highlights: [
       {
         step: '01',
@@ -602,18 +717,18 @@ export const projects: Project[] = [
     id: 9,
     title: 'United Internationals',
     category: 'Corporate / Business',
-    tags: ['Corporate', 'Web Design', 'Contact Forms', 'Navigation'],
-    image: '/images/work/mockup.png',
+    tags: ['Corporate', 'Web Design', 'Website Development', 'Business'],
+    image: '/images/work/united.png',
     year: '2025',
     description:
-      'A structured corporate website presenting business services with professional visual hierarchy and clear contact channels.',
+      'A professional corporate website showcasing business services with clean design and effective communication.',
     overview:
-      'United Internationals is a corporate entity offering trade, consultancy, or business solutions with contact channels. The site communicates credibility through a clean corporate palette, structured service sections, and a strong typographic hierarchy.',
+      'United Internationals is a corporate business solutions provider. We delivered comprehensive website development that communicates their expertise through a clean corporate aesthetic, structured information architecture, and professional visual design that builds trust with prospective clients.',
     services: [
-      'Company information',
-      'Business & consultancy services',
-      'Contact form integration',
-      'Professional navigation structure',
+      'Website development',
+      'Corporate branding',
+      'Business presentation',
+      'Contact integration',
     ],
     client: 'United Internationals',
     gallery: [
@@ -624,8 +739,9 @@ export const projects: Project[] = [
     country: 'United Kingdom',
     industry: 'Corporate / Business',
     tools: 'Figma, Next.js, Tailwind CSS',
-    functionality: 'Corporate website with structured service sections, professional branding, and contact CTA.',
+    functionality: 'Corporate website development with professional service presentation, clear information hierarchy, and strategic contact integration.',
     liveUrl: 'https://www.unitedintls.com/',
+    videoUrl: 'https://play.gumlet.io/embed/69898b24742559dc5a6ed643',
     highlights: [
       {
         step: '01',
@@ -856,6 +972,249 @@ export const projects: Project[] = [
         { src: '/images/work/mockup.png', caption: 'Inquiry Section' },
       ],
     },
+  },
+  {
+    id: 13,
+    title: 'LumnLab',
+    category: 'Technology / SaaS',
+    tags: ['React.js', 'Web Development', 'UI/UX', 'Modern Design'],
+    image: '/images/work/lumnlab.png',
+    year: '2025',
+    description:
+      'A modern technology platform built with React.js featuring sleek UI and seamless user experience.',
+    overview:
+      'LumnLab is a cutting-edge technology platform built with React.js, delivering a sophisticated user interface and seamless interactions. The project showcases modern web development practices with component-based architecture, responsive design, and optimized performance.',
+    services: [
+      'Website development',
+      'React.js development',
+      'UI/UX design implementation',
+      'Performance optimization',
+    ],
+    client: 'LumnLab',
+    gallery: [
+      '/images/work/mockup.png',
+      '/images/work/mockup.png',
+      '/images/work/mockup.png',
+    ],
+    country: 'United States',
+    industry: 'Technology / SaaS',
+    tools: 'React.js, Figma, Vite, CSS Modules',
+    functionality: 'Modern web application built with React.js featuring component-based architecture, responsive design, and optimized performance for seamless user experience.',
+    videoUrl: 'https://play.gumlet.io/embed/698b27f4aec3d4e420dbf3a9',
+    highlights: [
+      {
+        step: '01',
+        title: 'Component Architecture',
+        content: 'Built with modular React components ensuring scalability, maintainability, and reusability across the entire application.',
+        image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop',
+      },
+      {
+        step: '02',
+        title: 'Modern UI Design',
+        content: 'Sleek, contemporary interface with smooth animations and intuitive navigation that enhances user engagement and satisfaction.',
+        image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974&auto=format&fit=crop',
+      },
+      {
+        step: '03',
+        title: 'Performance Optimized',
+        content: 'Optimized bundle sizes, lazy loading, and efficient rendering strategies ensure lightning-fast load times and smooth interactions.',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2025&auto=format&fit=crop',
+      },
+    ],
+    moodboard: {
+      palette: [
+        { color: '#1a1a2e', label: 'Deep Navy' },
+        { color: '#16213e', label: 'Midnight Blue' },
+        { color: '#0f3460', label: 'Ocean Blue' },
+        { color: '#533483', label: 'Royal Purple' },
+        { color: '#e94560', label: 'Vibrant Red' },
+      ],
+      images: [
+        { src: '/images/work/mockup.png', caption: 'Platform Dashboard' },
+        { src: '/images/work/mockup.png', caption: 'Component Library' },
+        { src: '/images/work/mockup.png', caption: 'Responsive Design' },
+        { src: '/images/work/mockup.png', caption: 'User Interface' },
+        { src: '/images/work/mockup.png', caption: 'Mobile Experience' },
+      ],
+    },
+  },
+
+  // ─────────────────────────────────────────────────────────────────────
+  // PeopleVerse - Website Design Case Study
+  // ─────────────────────────────────────────────────────────────────────
+  {
+    id: 14,
+    title: 'PeopleVerse',
+    category: 'Website Design',
+    tags: ['Website Design', 'UI/UX', 'Wireframing'],
+    image: '/images/website design/peopleverse/Home page.jpg',
+    year: '2025',
+    description:
+      'A comprehensive HR management platform design featuring intuitive wireframes, modern UI, and seamless user experience.',
+    overview:
+      'PeopleVerse is a modern HR management platform designed to streamline employee management, recruitment, and organizational workflows. Our design process focused on creating an intuitive interface that balances functionality with visual appeal, ensuring both HR professionals and employees can navigate the platform effortlessly.',
+    services: [
+      'User Research & Analysis',
+      'Low-Fidelity Wireframing',
+      'High-Fidelity UI Design',
+      'Design System Development',
+      'Responsive Design',
+      'Prototype Development',
+    ],
+    client: 'PeopleVerse HR Solutions',
+    gallery: [
+      '/images/website design/peopleverse/Home page.jpg',
+      '/images/website design/peopleverse/servicepage.png',
+      '/images/website design/peopleverse/contactpage.png',
+      '/images/website design/peopleverse/HomeLowWireframe.png',
+    ],
+    country: 'United States',
+    industry: 'HR Technology / SaaS',
+    tools: 'Figma, Adobe XD, Miro, FigJam',
+    functionality:
+      'Comprehensive HR management platform featuring employee onboarding, performance tracking, recruitment workflows, analytics dashboards, and team collaboration tools. Designed with scalability and user-centric principles.',
+
+    wireframes: [
+      {
+        title: 'Initial Low-Fidelity Wireframes',
+        description:
+          'Started with rapid sketching to explore layout structures and information architecture. These low-fidelity wireframes helped us validate the basic flow and hierarchy before investing in high-fidelity designs.',
+        image: '/images/website design/peopleverse/HomeLowWireframe.png',
+        type: 'low-fidelity',
+        learnings:
+          'Early user testing revealed that the navigation needed to be more prominent, and the dashboard required better visual hierarchy for quick scanning.',
+      },
+      {
+        title: 'High-Fidelity Home Page',
+        description:
+          'Evolved the wireframes into a polished, modern interface with carefully chosen typography, spacing, and visual elements. The hero section clearly communicates the platform\'s value proposition while guiding users to key actions.',
+        image: '/images/website design/peopleverse/Home page.jpg',
+        type: 'high-fidelity',
+        learnings:
+          'The addition of micro-interactions and visual feedback significantly improved user confidence and engagement during prototype testing.',
+      },
+      {
+        title: 'Services Page Design',
+        description:
+          'Designed a comprehensive services page that showcases PeopleVerse\'s core features with clear visual hierarchy and intuitive navigation. Each service module is presented with iconography and concise descriptions.',
+        image: '/images/website design/peopleverse/servicepage.png',
+        type: 'final-design',
+      },
+      {
+        title: 'Contact Page Interface',
+        description:
+          'Created a welcoming contact page that reduces friction in user inquiries. The form design balances completeness with simplicity, featuring smart field validation and clear visual feedback.',
+        image: '/images/website design/peopleverse/contactpage.png',
+        type: 'final-design',
+      },
+    ],
+
+    designProgression: [
+      {
+        stage: 'research',
+        title: 'Discovery & Research',
+        description:
+          'Conducted comprehensive user interviews with HR professionals and employees to understand pain points in existing HR platforms. Created user personas, journey maps, and identified key use cases.',
+        learnings:
+          'Users prioritized ease of use over feature abundance. The most successful HR platforms had intuitive navigation and minimal clicks to complete common tasks.',
+        image: '/images/website design/peopleverse/HomeLowWireframe.png',
+      },
+      {
+        stage: 'wireframe',
+        title: 'Wireframing & Information Architecture',
+        description:
+          'Developed low-fidelity wireframes to establish content hierarchy and user flows. Iterated through multiple versions based on stakeholder feedback and usability heuristics.',
+        learnings:
+          'The dashboard layout needed to be flexible to accommodate different user roles (HR admins, managers, employees) with role-based permissions and customizable widgets.',
+        image: '/images/website design/peopleverse/HomeLowWireframe.png',
+      },
+      {
+        stage: 'prototype',
+        title: 'High-Fidelity Design & Prototyping',
+        description:
+          'Transformed wireframes into polished, pixel-perfect designs with a modern aesthetic. Developed an interactive prototype to test user flows and micro-interactions.',
+        learnings:
+          'Adding subtle animations and transitions made the interface feel more responsive and professional, increasing user trust in the platform.',
+        image: '/images/website design/peopleverse/Home page.jpg',
+      },
+      {
+        stage: 'final',
+        title: 'Design System & Handoff',
+        description:
+          'Created a comprehensive design system including components, patterns, color palettes, typography scales, and interaction guidelines. Prepared developer-ready specifications for seamless implementation.',
+        learnings:
+          'A well-documented design system reduced development time by 40% and ensured consistency across all platform touchpoints.',
+        image: '/images/website design/peopleverse/servicepage.png',
+      },
+    ],
+
+    typography: {
+      primary: { name: 'Inter', weights: ['400', '500', '600', '700'] },
+      secondary: { name: 'Poppins', weights: ['400', '600', '700'] },
+      scale: [
+        { name: 'Display', size: '3.5rem', weight: '700', sample: 'Empower Your Workforce' },
+        { name: 'Heading 1', size: '2.5rem', weight: '600', sample: 'Modern HR Management' },
+        { name: 'Heading 2', size: '2rem', weight: '600', sample: 'Streamline Your Processes' },
+        { name: 'Body', size: '1rem', weight: '400', sample: 'PeopleVerse simplifies HR operations with intuitive tools designed for modern teams.' },
+        { name: 'Caption', size: '0.875rem', weight: '400', sample: 'Trusted by 500+ companies worldwide' },
+      ],
+    },
+
+    moodboard: {
+      palette: [
+        { color: '#2563eb', label: 'Primary Blue' },
+        { color: '#1e40af', label: 'Dark Blue' },
+        { color: '#60a5fa', label: 'Light Blue' },
+        { color: '#f1f5f9', label: 'Background Gray' },
+        { color: '#0f172a', label: 'Text Dark' },
+        { color: '#64748b', label: 'Text Muted' },
+      ],
+      images: [
+        { src: '/images/website design/peopleverse/Home page.jpg', caption: 'Home Page - Hero Section' },
+        { src: '/images/website design/peopleverse/servicepage.png', caption: 'Services Overview' },
+        { src: '/images/website design/peopleverse/contactpage.png', caption: 'Contact Interface' },
+        { src: '/images/website design/peopleverse/HomeLowWireframe.png', caption: 'Wireframe Evolution' },
+      ],
+    },
+
+    designPrinciples: [
+      'User-First: Every design decision prioritizes user needs and reduces cognitive load',
+      'Clarity: Clear visual hierarchy and intuitive navigation across all touchpoints',
+      'Consistency: Unified design language with reusable components and patterns',
+      'Accessibility: WCAG 2.1 AA compliant with inclusive design practices',
+      'Scalability: Flexible design system that grows with the platform',
+    ],
+
+    highlights: [
+      {
+        step: '01',
+        title: 'Research & Discovery',
+        content:
+          'Conducted user interviews and competitive analysis to understand HR platform pain points and opportunities.',
+        image: '/images/website design/peopleverse/HomeLowWireframe.png',
+      },
+      {
+        step: '02',
+        title: 'Wireframing',
+        content:
+          'Created low-fidelity wireframes to establish information architecture and user flows.',
+        image: '/images/website design/peopleverse/HomeLowWireframe.png',
+      },
+      {
+        step: '03',
+        title: 'High-Fidelity Design',
+        content:
+          'Developed polished UI designs with modern aesthetics and intuitive interactions.',
+        image: '/images/website design/peopleverse/Home page.jpg',
+      },
+      {
+        step: '04',
+        title: 'Design System',
+        content:
+          'Built a comprehensive design system for consistency and scalability.',
+        image: '/images/website design/peopleverse/servicepage.png',
+      },
+    ],
   },
 ];
 

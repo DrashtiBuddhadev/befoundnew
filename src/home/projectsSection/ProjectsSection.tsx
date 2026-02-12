@@ -1,55 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { projects as allProjects } from '../../pages/work/projectsData';
 import './ProjectsSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
-  {
-    id: 1,
-    title: 'Kaizen Dezain',
-    category: 'Brand Identity & Web Design',
-    image: '/images/work/Kaizen Dezain Mockup.png',
-    year: '2024',
-  },
-  {
-    id: 2,
-    title: 'NW9 Studio',
-    category: 'Design System & Development',
-    image: '/images/work/NW9 Design System Mockup.png',
-    year: '2024',
-  },
-  {
-    id: 3,
-    title: 'Muse & Masterpiece',
-    category: 'E-commerce & Branding',
-    image: '/images/work/Muse & Masterpiece Mockup.png',
-    year: '2024',
-  },
-  {
-    id: 4,
-    title: 'Weston Dental',
-    category: 'Healthcare & SEO',
-    image: '/images/work/Weston Dental Mockup.png',
-    year: '2025',
-  },
-  {
-    id: 5,
-    title: 'NW9 Development',
-    category: 'Custom Engineering',
-    image: '/images/work/NW9 Development Services Mockup.png',
-    year: '2025',
-  },
-];
+// Show only specific projects: LumnLab, Blue Escape, Muse & Masterpiece, United Internationals, Weston Dental, Crazy Virality
+const selectedProjectIds = [13, 6, 2, 9, 3, 7];
+const projects = allProjects.filter(project => selectedProjectIds.includes(project.id));
 
 export default function ProjectsSection() {
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -99,38 +67,30 @@ export default function ProjectsSection() {
     return () => ctx.revert();
   }, []);
 
-  const checkScrollPosition = () => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    setCanScrollLeft(slider.scrollLeft > 0);
-    setCanScrollRight(
-      slider.scrollLeft < slider.scrollWidth - slider.clientWidth - 10
-    );
+  const scroll = (direction: 'left' | 'right') => {
+    if (direction === 'left') {
+      setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+    } else {
+      setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+    }
   };
 
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
 
-    slider.addEventListener('scroll', checkScrollPosition);
-    checkScrollPosition();
-
-    return () => slider.removeEventListener('scroll', checkScrollPosition);
-  }, []);
-
-  const scroll = (direction: 'left' | 'right') => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
     const cardWidth = slider.querySelector('.project-card')?.clientWidth || 400;
     const gap = 24;
-    const scrollAmount = cardWidth + gap;
+    const scrollAmount = (cardWidth + gap) * currentIndex;
 
-    slider.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
+    slider.scrollTo({
+      left: scrollAmount,
       behavior: 'smooth',
     });
+  }, [currentIndex]);
+
+  const handleProjectClick = (projectId: number) => {
+    navigate(`/work/${projectId}`);
   };
 
   return (
@@ -159,23 +119,15 @@ export default function ProjectsSection() {
           <div className="animate-item flex items-center gap-3">
             <button
               onClick={() => scroll('left')}
-              disabled={!canScrollLeft}
-              className={`nav-arrow w-12 h-12 border flex items-center justify-center transition-all duration-300 ${
-                canScrollLeft
-                  ? 'border-white/20 hover:bg-white hover:border-white text-white hover:text-black'
-                  : 'border-white/10 text-white/20 cursor-not-allowed'
-              }`}
+              className="nav-arrow w-12 h-12 border border-white/20 hover:bg-white hover:border-white text-white hover:text-black flex items-center justify-center transition-all duration-300"
+              aria-label="Previous project"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => scroll('right')}
-              disabled={!canScrollRight}
-              className={`nav-arrow w-12 h-12 border flex items-center justify-center transition-all duration-300 ${
-                canScrollRight
-                  ? 'border-white/20 hover:bg-white hover:border-white text-white hover:text-black'
-                  : 'border-white/10 text-white/20 cursor-not-allowed'
-              }`}
+              className="nav-arrow w-12 h-12 border border-white/20 hover:bg-white hover:border-white text-white hover:text-black flex items-center justify-center transition-all duration-300"
+              aria-label="Next project"
             >
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -191,6 +143,7 @@ export default function ProjectsSection() {
         {projects.map((project) => (
           <div
             key={project.id}
+            onClick={() => handleProjectClick(project.id)}
             className="project-card group relative flex-shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[32vw] xl:w-[28vw] aspect-[4/3] overflow-hidden cursor-pointer"
           >
             {/* Image */}
@@ -243,19 +196,6 @@ export default function ProjectsSection() {
             <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/30 transition-colors duration-500 pointer-events-none" />
           </div>
         ))}
-
-        {/* View All Card */}
-        <div className="project-card view-all-card group relative flex-shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[32vw] xl:w-[28vw] aspect-[4/3] overflow-hidden cursor-pointer border border-white/10 bg-white/5 hover:bg-white/10 transition-colors duration-500">
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-6">
-            <div className="w-20 h-20 border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-500">
-              <ArrowRight className="w-8 h-8 text-white group-hover:text-black transition-colors duration-500" />
-            </div>
-            <div className="text-center">
-              <p className="text-xl font-medium text-white mb-2">View all projects</p>
-              <p className="text-sm text-white/40">Explore our complete portfolio</p>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Bottom Stats/Info */}

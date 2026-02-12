@@ -6,12 +6,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import StickyContactButtons from './components/StickyContactButtons';
+import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import WorkPage from './pages/WorkPage';
-// import ProjectDetailPage from './pages/work/ProjectDetailPage';
+import ProjectDetailPage from './pages/work/ProjectDetailPage';
 import ContactPage from './pages/ContactPage';
 import ServicesPage from './pages/ServicesPage';
+import ServiceDetailsPage from './pages/ServiceDetailsPage';
 
 import './App.css';
 
@@ -33,6 +35,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="relative bg-black min-h-screen">
         {/* Navigation */}
         <Navigation />
@@ -43,8 +46,9 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/work" element={<WorkPage />} />
-            {/* <Route path="/work/:id" element={<ProjectDetailPage />} /> */}
+            <Route path="/work/:id" element={<ProjectDetailPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/:serviceId" element={<ServiceDetailsPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>

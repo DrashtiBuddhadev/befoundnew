@@ -5,7 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 const navLinks = [
   { label: 'Home', href: '/', isRoute: true },
   { label: 'About', href: '/about', isRoute: true },
-  { label: 'Work', href: '/work', isRoute: true },
+  // { label: 'Work', href: '/work', isRoute: true }, // Hidden for launch
   { label: 'Services', href: '/services', isRoute: true },
   { label: 'Contact', href: '/contact', isRoute: true },
 ];

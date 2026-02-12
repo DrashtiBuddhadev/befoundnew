@@ -1,12 +1,15 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowUpRight } from 'lucide-react';
 import './ServicesSection.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
+    id: 'ui-ux-design',
     year: '2025',
     title: 'UI/UX Design',
     description:
@@ -15,14 +18,16 @@ const services = [
     tags: ['Figma UI Design', 'User Experience (UX)', 'Wireframes', 'Responsive Planning'],
   },
   {
+    id: 'web-development',
     year: '2025',
     title: 'Web Development',
     description:
       "Not every brand needs the same platform and not every platform suits the same goals. We build on WordPress, Shopify, and Webflow to engineer the right environment for your business to live, grow, and scale. Development should be invisible not in capability, but in experience. We build websites that are fast, secure, and structurally sound.",
     image: '/images/work/Muse & Masterpiece Mockup.png',
-    tags: ['Pixel Perfect Translation', 'Shpify, Wordpress, Webflows', 'Client-First Framework- MERN Stack', 'Technical SEO'],
+    tags: ['Pixel Perfect Translation', 'Shopify, Wordpress, Webflows', 'Client-First Framework- MERN Stack', 'Technical SEO'],
   },
   {
+    id: 'end-to-end',
     year: '2025',
     title: 'End-to-End Package',
     description:
@@ -31,6 +36,7 @@ const services = [
     tags: ['Full Project Lifecycle', 'Design + Development + SEO', 'Unified Vision', 'Rapid Iteration', 'Post-Launch Maintenance Support'],
   },
   {
+    id: 'custom-engineering',
     year: '2025',
     title: 'Custom Engineering',
     description:
@@ -39,6 +45,7 @@ const services = [
     tags: ['Advanced Motion (GSAP)', 'Framer Motion ', 'Web Applications', 'Modern Frontend', 'API & Automation'],
   },
   {
+    id: 'seo',
     year: '2025',
     title: 'SEO',
     description:
@@ -52,6 +59,7 @@ export default function ServicesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -171,7 +179,7 @@ export default function ServicesSection() {
                     </p>
 
                     {/* Tags */}
-                    <div className="space-y-0 border-t border-white/10">
+                    <div className="space-y-0 border-t border-white/10 mb-8">
                       {service.tags.map((tag, i) => (
                         <div
                           key={i}
@@ -181,6 +189,15 @@ export default function ServicesSection() {
                         </div>
                       ))}
                     </div>
+
+                    {/* View Details Button */}
+                    <button
+                      onClick={() => navigate(`/services/${service.id}`)}
+                      className="group inline-flex items-center gap-3 px-6 py-3 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
+                    >
+                      <span className="text-sm font-medium">View Details</span>
+                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </button>
                   </div>
                 </div>
               </div>

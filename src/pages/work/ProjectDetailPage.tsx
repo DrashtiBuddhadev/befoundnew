@@ -1,16 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight, ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import Lenis from '@studio-freight/lenis';
-import { getProjectById, projects } from './projectsData';
-import KeyHighlights from './KeyHighlights';
-import MoodboardSection from './MoodboardSection';
+import { getProjectById } from './projectsData';
 import CtaSection from '../../home/ctaSection/CtaSection';
-
-gsap.registerPlugin(ScrollTrigger);
+import WireframeSection from './WireframeSection';
+import DesignProgressionTimeline from './DesignProgressionTimeline';
 
 // ─── sidebar meta row ──────────────────────────────────────────────────────
 function MetaRow({ label, value }: { label: string; value: string }) {
@@ -26,9 +22,6 @@ export default function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const project = getProjectById(Number(id));
-
-  const highlightsRef = useRef<HTMLDivElement>(null);
-  const galleryRef    = useRef<HTMLDivElement>(null);
 
   // ── smooth scroll ──────────────────────────────────────────────────
   useEffect(() => {
@@ -48,41 +41,6 @@ export default function ProjectDetailPage() {
 
     return () => { lenis.destroy(); };
   }, []);
-
-  // ── GSAP scroll reveals ────────────────────────────────────────────
-  useEffect(() => {
-    if (!project) return;
-
-    const sections = [highlightsRef, galleryRef];
-    const ctxs: ReturnType<typeof gsap.context>[] = [];
-
-    sections.forEach((ref) => {
-      const el = ref.current;
-      if (!el) return;
-
-      const ctx = gsap.context(() => {
-        gsap.fromTo(
-          el.querySelectorAll('.reveal-item'),
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      }, el);
-      ctxs.push(ctx);
-    });
-
-    return () => ctxs.forEach((c) => c.revert());
-  }, [project]);
 
   // ── guard ──────────────────────────────────────────────────────────
   if (!project) {
@@ -117,16 +75,8 @@ export default function ProjectDetailPage() {
           pt-24 pb-10
           border-r border-white/[0.06]
         ">
-          {/* back link */}
+          {/* project info */}
           <div>
-            <Link
-              to="/work"
-              className="inline-flex items-center gap-2 text-white/40 hover:text-white transition-colors text-xs mb-10"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              All Projects
-            </Link>
-
             {/* project name */}
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
@@ -279,108 +229,76 @@ export default function ProjectDetailPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════════
-          SECTION 2  –  KEY HIGHLIGHTS  (auto-play stepper)
+          SECTION 2  –  VIDEO SHOWCASE  (Gumlet embed on white background)
           ══════════════════════════════════════════════════════════════════════ */}
-      <div ref={highlightsRef}>
-        <KeyHighlights highlights={project.highlights} />
-      </div>
+      {project.videoUrl && (
+        <section className="relative bg-white py-20 md:py-28">
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
 
-      {/* ══════════════════════════════════════════════════════════════════════
-          SECTION 3  –  MOODBOARD  (palette + mockups) — rendered only when data exists
-          ══════════════════════════════════════════════════════════════════════ */}
-      {project.moodboard && (
-        <MoodboardSection moodboard={project.moodboard} />
+            {/* section label */}
+            <div className="flex items-center gap-3 mb-10">
+              <div className="w-8 h-[2px] bg-indigo-500" />
+              <span className="text-xs font-medium tracking-widest uppercase text-black/40">
+                Project Showcase
+              </span>
+            </div>
+
+            {/* video container */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+              viewport={{ once: true }}
+              className="relative w-full rounded-sm overflow-hidden shadow-2xl shadow-black/10"
+              style={{ aspectRatio: '16/9' }}
+            >
+              <iframe
+                loading="lazy"
+                title="Gumlet video player"
+                src={`${project.videoUrl}?autoplay=true&loop=true&muted=true&controls=false`}
+                style={{
+                  border: 'none',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  height: '100%',
+                  width: '100%',
+                }}
+                referrerPolicy="origin"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+              />
+            </motion.div>
+
+            {/* optional caption */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="mt-6 text-center text-xs uppercase tracking-widest text-black/30"
+            >
+              Watch the full project walkthrough
+            </motion.p>
+          </div>
+        </section>
       )}
 
       {/* ══════════════════════════════════════════════════════════════════════
-          SECTION 4  –  3-CARD STRIP  (prev · current · next project)
+          SECTION 3  –  DESIGN PROGRESSION TIMELINE (Design Projects Only)
           ══════════════════════════════════════════════════════════════════════ */}
-      <section ref={galleryRef} className="relative bg-[#0a0a0a] py-20 md:py-28 border-t border-white/[0.06]">
-        {/* label */}
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 mb-10">
-          <div className="reveal-item flex items-center gap-3">
-            <div className="w-8 h-[2px] bg-indigo-500" />
-            <span className="text-xs font-medium tracking-widest uppercase text-white/40">
-              Featured Web Design projects
-            </span>
-          </div>
-        </div>
-
-        {/* cards */}
-        <div className="reveal-item max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-            {(() => {
-              const idx = projects.findIndex((p) => p.id === project.id);
-              const len = projects.length;
-              const indices = [
-                (idx - 1 + len) % len,
-                idx,
-                (idx + 1) % len,
-              ];
-              return indices.map((pIdx) => {
-                const p = projects[pIdx];
-                return (
-                  <Link
-                    key={p.id}
-                    to={`/work/${p.id}`}
-                    className="group relative overflow-hidden rounded-sm cursor-pointer block"
-                  >
-                    <div className="relative aspect-[3/4] sm:aspect-[4/5] bg-neutral-900 overflow-hidden">
-                      <img
-                        src={p.image}
-                        alt={p.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500" />
-
-                      {/* square View CTA */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
-                          <div className="w-16 h-16 bg-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-110 transition-transform duration-300">
-                            <ArrowUpRight className="w-6 h-6 text-white" />
-                          </div>
-                          <span className="text-sm font-medium text-white tracking-wide">View</span>
-                        </div>
-                      </div>
-
-                      {/* indigo bar */}
-                      <div className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full bg-gradient-to-r from-indigo-500 to-indigo-400 transition-all duration-500" />
-                    </div>
-
-                    {/* title overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 pt-12 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none">
-                      <h3 className="text-lg md:text-xl font-semibold text-white">{p.title}</h3>
-                      <p className="text-xs text-white/50 mt-0.5">{p.category}</p>
-                    </div>
-                  </Link>
-                );
-              });
-            })()}
-          </div>
-        </div>
-
-        {/* bottom nav links */}
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 mt-16 pt-10 border-t border-white/[0.06] flex items-center justify-between">
-          <Link
-            to="/work"
-            className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-sm">Back to all projects</span>
-          </Link>
-
-          <Link
-            to="/work"
-            className="flex items-center gap-3 text-white/50 hover:text-indigo-400 transition-colors group"
-          >
-            <span className="text-sm">View more work</span>
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </Link>
-        </div>
-      </section>
+      {project.designProgression && (
+        <DesignProgressionTimeline stages={project.designProgression} />
+      )}
 
       {/* ══════════════════════════════════════════════════════════════════════
-          CTA
+          SECTION 4  –  WIREFRAME EVOLUTION (Design Projects Only)
+          ══════════════════════════════════════════════════════════════════════ */}
+      {project.wireframes && (
+        <WireframeSection steps={project.wireframes} />
+      )}
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          SECTION 5  –  CTA
           ══════════════════════════════════════════════════════════════════════ */}
       <CtaSection />
     </div>

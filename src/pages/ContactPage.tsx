@@ -175,7 +175,7 @@ export default function ContactPage() {
       {/* Hero Section with Form */}
       <section
         ref={heroRef}
-        className="relative w-full h-screen flex items-center overflow-hidden pt-20 lg:pt-24"
+        className="relative w-full min-h-screen flex items-center overflow-hidden pt-20 lg:pt-24 pb-12"
       >
         {/* Background Video */}
         <div className="absolute inset-0">
@@ -193,23 +193,32 @@ export default function ContactPage() {
         </div>
 
         {/* Content + Form Grid */}
-        <div className="relative z-10 max-w-[1600px] mx-auto w-full px-6 sm:px-12 lg:px-20 py-24">
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+        <div className="relative z-10 max-w-[1600px] mx-auto w-full px-6 sm:px-12 lg:px-20 py-12 md:py-24">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-16">
             {/* Left: Hero Content */}
             <div className="lg:col-span-2">
-              <div className="overflow-hidden mb-0 pb-2">
-                <h1 className="contact-hero-title text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1] text-white">
-                  Let's Create{' '}
+              <div className="overflow-hidden mb-2">
+                <h1 className="contact-hero-title text-[13vw] sm:text-[10vw] md:text-[8vw] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1] text-white">
+                  Let's Create
+                </h1>
+              </div>
+              <div className="overflow-hidden mb-2">
+                <h1 className="contact-hero-title text-[13vw] sm:text-[10vw] md:text-[8vw] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1]">
                   <span className="text-indigo-500">Something</span>
                 </h1>
               </div>
-              <div className="overflow-hidden mb-8 pb-2">
-                <h1 className="contact-hero-title text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1] text-white">
-                  <span className="text-indigo-500">Amazing</span> Together
+              <div className="overflow-hidden mb-2">
+                <h1 className="contact-hero-title text-[13vw] sm:text-[10vw] md:text-[8vw] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1]">
+                  <span className="text-indigo-500">Amazing</span>
+                </h1>
+              </div>
+              <div className="overflow-hidden mb-6">
+                <h1 className="contact-hero-title text-[13vw] sm:text-[10vw] md:text-[8vw] lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.5rem] font-light tracking-[-0.03em] leading-[1.1] text-white">
+                  Together
                 </h1>
               </div>
               <div className="overflow-hidden pb-2">
-                <p className="contact-hero-subtitle text-lg md:text-lg lg:text-lg xl:text-xl text-white/60 max-w-lg">
+                <p className="contact-hero-subtitle text-base md:text-lg lg:text-lg xl:text-xl text-white/60 max-w-lg">
                   Have a project in mind? We'd love to hear about it. Drop us a message
                   and let's start building something extraordinary.
                 </p>
@@ -218,10 +227,10 @@ export default function ContactPage() {
 
             {/* Right: Contact Form */}
             <div className="contact-form lg:col-span-3">
-              <div className="bg-black/40 backdrop-blur-xl border border-white/10 p-6 md:p-8 max-h-[85vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+              <div className="bg-black/40 backdrop-blur-xl border border-white/10 p-5 md:p-8">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-5">
                   {/* Name & Email */}
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label htmlFor="name" className="block text-sm text-white/70">
                         Name <span className="text-indigo-500">*</span>
@@ -261,7 +270,7 @@ export default function ContactPage() {
                     <label className="block text-sm text-white/70">
                       Services Interested In <span className="text-indigo-500">*</span>
                     </label>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                       {services.map((service) => (
                         <label
                           key={service.id}
@@ -272,9 +281,9 @@ export default function ContactPage() {
                             id={service.id}
                             checked={selectedServices.includes(service.id)}
                             onCheckedChange={() => handleServiceToggle(service.id)}
-                            className="border-white/30 data-[state=checked]:bg-indigo-600 data-[state=checked]:border-indigo-600"
+                            className="border-white/30 data-[state=checked]:bg-indigo-600 data-[state=checked]:border-indigo-600 flex-shrink-0"
                           />
-                          <span className="text-xs text-white cursor-pointer flex-1">
+                          <span className="text-xs sm:text-sm text-white cursor-pointer flex-1 leading-tight">
                             {service.label}
                           </span>
                         </label>
