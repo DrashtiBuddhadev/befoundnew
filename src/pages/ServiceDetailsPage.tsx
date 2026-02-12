@@ -292,7 +292,6 @@ export default function ServiceDetailsPage() {
   const { serviceId } = useParams<{ serviceId: string }>();
   const navigate = useNavigate();
   const servicesRef = useRef<HTMLDivElement>(null);
-  const showcaseRef = useRef<HTMLDivElement>(null);
 
   const service = serviceId ? serviceDetails[serviceId as keyof typeof serviceDetails] : null;
 
@@ -355,7 +354,7 @@ export default function ServiceDetailsPage() {
 
   // GSAP animations
   useEffect(() => {
-    if (!servicesRef.current || !showcaseRef.current) return;
+    if (!servicesRef.current) return;
 
     const ctx = gsap.context(() => {
       // Services grid animation
@@ -370,24 +369,6 @@ export default function ServiceDetailsPage() {
           ease: 'power2.out',
           scrollTrigger: {
             trigger: servicesRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-
-      // Showcase grid animation
-      gsap.fromTo(
-        showcaseRef.current!.querySelectorAll('.showcase-item'),
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: showcaseRef.current,
             start: 'top 80%',
             toggleActions: 'play none none none',
           },
@@ -569,98 +550,6 @@ export default function ServiceDetailsPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Showcase Section */}
-      <section className="relative bg-[#0a0a0a] py-24 md:py-32">
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-transparent pointer-events-none" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
-          {/* Section Header */}
-          <div className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-[2px] bg-white/30" />
-              <span className="text-xs font-medium tracking-widest uppercase text-white/40">
-                Featured Work
-              </span>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-white leading-tight">
-                Best of our<br />
-                <span className="text-indigo-400">Web Design Projects</span>
-              </h2>
-              <div className="flex items-end">
-                <p className="text-base text-white/50 leading-relaxed">
-                  Real projects. Real results. Each one designed to solve specific challenges and deliver measurable impact.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Projects Grid */}
-          <div
-            ref={showcaseRef}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-12"
-          >
-            {service.showcaseProjects.map((project) => (
-              <div
-                key={project.id}
-                className="showcase-item group relative overflow-hidden cursor-pointer border border-white/10 hover:border-indigo-500/50 transition-all duration-500"
-                onClick={() => navigate(`/work/${project.id}`)}
-              >
-                {/* Image container */}
-                <div className="relative w-full aspect-[4/3] bg-neutral-900 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Dark overlay */}
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors duration-500" />
-
-                  {/* Center arrow (appears on hover) */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex flex-col items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                      <div className="w-14 h-14 border-2 border-white flex items-center justify-center bg-white/10 backdrop-blur-sm group-hover:bg-white transition-all duration-300">
-                        <ArrowUpRight className="w-5 h-5 text-white group-hover:text-black transition-colors duration-300" />
-                      </div>
-                      <span className="text-sm font-medium text-white tracking-wide">
-                        View case study
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Indigo bottom-bar */}
-                  <div className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full bg-gradient-to-r from-indigo-500 to-indigo-400 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" />
-                </div>
-
-                {/* Card info row */}
-                <div className="bg-[#0f0f0f] p-5 border-t border-white/5">
-                  <h3 className="text-lg md:text-xl font-medium text-white mb-1 group-hover:text-indigo-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-white/50">{project.category}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* View All Work Button */}
-          <div className="flex justify-center pt-8">
-            <button
-              onClick={() => navigate('/work')}
-              className="group inline-flex items-center gap-3 text-white"
-            >
-              <span className="w-12 h-12 border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-300">
-                <ArrowUpRight className="w-5 h-5 group-hover:text-black transition-colors" />
-              </span>
-              <span className="text-base font-medium group-hover:text-indigo-400 transition-colors">
-                View All Work
-              </span>
-            </button>
           </div>
         </div>
       </section>

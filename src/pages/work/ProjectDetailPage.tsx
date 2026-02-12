@@ -48,10 +48,10 @@ export default function ProjectDetailPage() {
       <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white">
         <p className="text-white/50 mb-4">Project not found.</p>
         <button
-          onClick={() => navigate('/work')}
+          onClick={() => navigate('/')}
           className="text-indigo-400 hover:text-indigo-300 transition-colors"
         >
-          Back to Work
+          Back to Home
         </button>
       </div>
     );
