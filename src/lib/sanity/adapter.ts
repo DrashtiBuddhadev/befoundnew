@@ -41,7 +41,13 @@ export function sanityToLegacyProject(sanityProject: SanityProject): Project {
       : undefined,
     wireframes: sanityProject.wireframes,
     designProgression: sanityProject.designProgression,
-    typography: sanityProject.typography,
+    typography: sanityProject.typography
+      ? {
+          primary: sanityProject.typography.primaryFont,
+          secondary: sanityProject.typography.secondaryFont,
+          scale: sanityProject.typography.scale,
+        }
+      : undefined,
     figmaPrototype: sanityProject.figmaPrototype,
     designPrinciples: sanityProject.designPrinciples,
   };

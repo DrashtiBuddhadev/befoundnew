@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import Lenis from '@studio-freight/lenis';
 import { getProjectById } from './projectsData';
 import CtaSection from '../../home/ctaSection/CtaSection';

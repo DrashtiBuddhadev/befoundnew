@@ -90,10 +90,7 @@ export default function ProjectDetailPageSanity() {
   }
 
   // Helper to determine which type-specific fields to show
-  const isBranding = project._type === 'brandingProject';
   const isDesign = project._type === 'websiteDesignProject';
-  const isDevelopment = project._type === 'websiteDevelopmentProject';
-  const isSEO = project._type === 'seoProject';
 
   return (
     <div className="project-detail-page bg-[#0a0a0a] min-h-screen">
